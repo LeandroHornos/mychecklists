@@ -4,14 +4,9 @@ import App from "./App";
 import "./index.css";
 // import reportWebVitals from './reportWebVitals';
 
-// FIREBASE:
-import { AuthProvider } from "./Auth";
-
 ReactDOM.render(
   <React.StrictMode>
-    <AuthProvider>
-      <App />
-    </AuthProvider>
+    <App />
   </React.StrictMode>,
   document.getElementById("root")
 );
