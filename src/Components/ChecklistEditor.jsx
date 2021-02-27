@@ -20,12 +20,12 @@ const ChecklistEditor = () => {
       <div className="col-md-4"></div>
       <div className="col-md-4" style={styles.centerColumn}>
         <div className="d-flex flex-column justify-content-around align-items-center my-checklist">
-          <h1 style={styles.h1}>Edit my Checklist</h1>
+          <h1 style={styles.h1}>Checklist Editor</h1>
 
-          <div style={{ width: "100%" }}>
+          <div style={styles.blockContainer}>
             <h4 style={styles.h4}>This items are currently in my checklist:</h4>
             <ul style={styles.itemsList}>
-            {(checklist.length===0)&& <p>There are no items yet</p>}
+              {checklist.length === 0 && <p>There are no items yet</p>}
               {checklist.map((field) => {
                 return (
                   <div
@@ -39,7 +39,7 @@ const ChecklistEditor = () => {
               })}
             </ul>
           </div>
-          <div style={{ width: "100%" }}>
+          <div style={styles.blockContainer}>
             <h4 style={styles.h4}>Add this item to my checklist:</h4>
             <InputGroup className="mb-3">
               <FormControl
@@ -70,14 +70,14 @@ const ChecklistEditor = () => {
             </InputGroup>
           </div>
           <div
-            style={styles.actionButtonsContainer}
+            style={styles.blockContainer}
             className="d-flex flex-column justify-content-between align-items-center"
           >
             <h4 style={styles.h4}>Do this with my checklist:</h4>
             <Button block variant="outline-success">
               Save
             </Button>
-            <Button block variant="outline-warning">
+            <Button block variant="outline-info">
               Clear
             </Button>
             <Button block variant="outline-danger">
@@ -94,10 +94,20 @@ const ChecklistEditor = () => {
 const styles = {
   h1: { padding: "40px 10px" },
   h4: { padding: "20px 0px", width: "100%" },
+  blockContainer: {
+    width: "100%",
+    padding: "20px 10px",
+    border: "solid",
+    borderWidth: "1px",
+    borderColor: "rgb(200,200,200)",
+    borderRadius: "10px",
+    marginBottom: "20px",
+    boxShadow: "0px 0px 5px 1px rgba(0,0,0,0.2)",
+  },
   itemsList: { width: "100%" },
   actionButtonsContainer: {
     width: "100%",
-    padding: "20px 0px",
+    padding: "20px 10px",
   },
   checklistEditorRow: {
     padding: "8px",
@@ -106,7 +116,7 @@ const styles = {
     borderColor: "rgb(200,200,200)",
     borderWidth: "1px",
     borderRadius: "5px",
-    boxShadow: "0px 0px 8px 1px rgba(0,0,0,0.2)",
+    boxShadow: "0px 0px 5px 1px rgba(0,0,0,0.2)",
   },
   centerColumn: { minHeight: "100vh" },
   row: { boxSizing: "border-box", padding: "10px", margin: "0px" },

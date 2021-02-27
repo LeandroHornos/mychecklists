@@ -6,7 +6,7 @@ import React from "react";
 import Button from "react-bootstrap/Button";
 import InputGroup from "react-bootstrap/InputGroup";
 import FormControl from "react-bootstrap/FormControl";
-const ChecklistWall = () => {
+const Login = () => {
 
   
   return (
@@ -14,7 +14,7 @@ const ChecklistWall = () => {
       <div className="col-md-4"></div>
       <div className="col-md-4" style={styles.centerColumn}>
         <div className="d-flex flex-column justify-content-around align-items-center">
-          <h4>ChecklistWall</h4>
+          <h4>Login</h4>
 
           <div>
             <label>Username:</label>
@@ -24,7 +24,7 @@ const ChecklistWall = () => {
             <label>Password:</label>
             <input type="password"></input>
           </div>
-          <button>ChecklistWall</button>
+          <button>Login</button>
         </div>
       </div>
       <div className="col-md-4"></div>
@@ -44,4 +44,4 @@ const styles = {
   },
   row: { boxSizing: "border-box", padding: "0px 10px", margin: "0px" },
 };
-export default ChecklistWall;
+export default Login;

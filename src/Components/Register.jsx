@@ -1,30 +1,31 @@
 import React from "react";
 
 
-
 // React-bootstrap
 import Button from "react-bootstrap/Button";
 import InputGroup from "react-bootstrap/InputGroup";
 import FormControl from "react-bootstrap/FormControl";
-const ChecklistWall = () => {
 
-  
+const Register = () => {
   return (
     <div className="row" style={styles.row}>
       <div className="col-md-4"></div>
       <div className="col-md-4" style={styles.centerColumn}>
         <div className="d-flex flex-column justify-content-around align-items-center">
-          <h4>ChecklistWall</h4>
-
+          <h4>Create a new user</h4>
           <div>
             <label>Username:</label>
             <input type="text"></input>
           </div>
           <div>
-            <label>Password:</label>
-            <input type="password"></input>
+            <label>Username:</label>
+            <input type="text"></input>
           </div>
-          <button>ChecklistWall</button>
+          <div>
+            <label>Username:</label>
+            <input type="text"></input>
+          </div>
+          <button>Register</button>
         </div>
       </div>
       <div className="col-md-4"></div>
@@ -44,4 +45,4 @@ const styles = {
   },
   row: { boxSizing: "border-box", padding: "0px 10px", margin: "0px" },
 };
-export default ChecklistWall;
+export default Register;

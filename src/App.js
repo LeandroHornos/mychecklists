@@ -5,7 +5,11 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import "./App.css";
 
 // Components
+import Dashboard from "./Components/Dashboard";
 import ChecklistEditor from "./Components/ChecklistEditor";
+import ChecklistWall from "./Components/ChecklistWall";
+import Register from "./Components/Register";
+import Login from "./Components/Login";
 
 function App() {
   const currentLang = "es";
@@ -14,7 +18,22 @@ function App() {
       <div style={{ boxSizing: "border-box" }}>
         <Switch>
           <Route exact path="/">
+            <Dashboard />
+          </Route>
+          <Route exact path="/edit">
             <ChecklistEditor />
+          </Route>
+          <Route exact path="/view">
+            <ChecklistEditor />
+          </Route>
+          <Route exact path="/checklists">
+            <ChecklistWall />
+          </Route>
+          <Route exact path="/login">
+            <Login />
+          </Route>
+          <Route exact path="/register">
+            <Register />
           </Route>
         </Switch>
       </div>
