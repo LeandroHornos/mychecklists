@@ -20,17 +20,17 @@ const ChecklistEditor = () => {
       <div className="col-md-4"></div>
       <div className="col-md-4" style={styles.centerColumn}>
         <div className="d-flex flex-column justify-content-around align-items-center my-checklist">
-          <h1 style={styles.h1}>Checklist Editor</h1>
+          <h1 className="page-title">Checklist Editor</h1>
 
           <div style={styles.blockContainer}>
-            <h4 style={styles.h4}>This items are currently in my checklist:</h4>
+            <h4 className="block-title">This items are currently in my checklist:</h4>
             <ul style={styles.itemsList}>
               {checklist.length === 0 && <p>There are no items yet</p>}
               {checklist.map((field) => {
                 return (
                   <div
                     className="checklist-editor-row d-flex justify-content-between align-items-center"
-                    style={styles.checklistEditorRow}
+
                   >
                     <label>{field.name}</label>
                     <Button variant="outline-danger">x</Button>
@@ -40,7 +40,7 @@ const ChecklistEditor = () => {
             </ul>
           </div>
           <div style={styles.blockContainer}>
-            <h4 style={styles.h4}>Add this item to my checklist:</h4>
+            <h4 className="block-title">Add this item to my checklist:</h4>
             <InputGroup className="mb-3">
               <FormControl
                 placeholder="Nombre del item"
@@ -73,7 +73,7 @@ const ChecklistEditor = () => {
             style={styles.blockContainer}
             className="d-flex flex-column justify-content-between align-items-center"
           >
-            <h4 style={styles.h4}>Do this with my checklist:</h4>
+            <h4 className="block-title">Do this with my checklist:</h4>
             <Button block variant="outline-success">
               Save
             </Button>
@@ -92,7 +92,6 @@ const ChecklistEditor = () => {
 };
 
 const styles = {
-  h1: { padding: "40px 10px" },
   h4: { padding: "20px 0px", width: "100%" },
   blockContainer: {
     width: "100%",

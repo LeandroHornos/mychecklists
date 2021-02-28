@@ -6,10 +6,13 @@ import "./App.css";
 
 // Components
 import Dashboard from "./Components/Dashboard";
+import Checklist from "./Components/Checklist";
 import ChecklistEditor from "./Components/ChecklistEditor";
 import ChecklistWall from "./Components/ChecklistWall";
 import Register from "./Components/Register";
 import Login from "./Components/Login";
+
+import "./App.css";
 
 function App() {
   const currentLang = "es";
@@ -24,7 +27,7 @@ function App() {
             <ChecklistEditor />
           </Route>
           <Route exact path="/view">
-            <ChecklistEditor />
+            <Checklist />
           </Route>
           <Route exact path="/checklists">
             <ChecklistWall />
