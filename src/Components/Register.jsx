@@ -1,48 +1,93 @@
-import React from "react";
+import React, { useState } from "react";
+import { useHistory } from "react-router-dom";
+import { Link } from "react-router-dom";
 
+// Firebase
+import firebaseApp from "../firebaseApp";
 
-// React-bootstrap
+/* Bootstrap */
 import Button from "react-bootstrap/Button";
-import InputGroup from "react-bootstrap/InputGroup";
-import FormControl from "react-bootstrap/FormControl";
+import Form from "react-bootstrap/Form";
 
-const Register = () => {
+import UserSchema from "../Models/UserSchema.js";
+
+function Register() {
+  const db = firebaseApp.firestore();
+  const history = useHistory();
+
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+
+  const handleSignUp = async () => {
+    try {
+      await firebaseApp.auth().createUserWithEmailAndPassword(email, password);
+      const newUser = firebaseApp.auth().currentUser;
+      const userData = {
+        ...UserSchema,
+        email: newUser.email,
+        uid: newUser.uid,
+      };
+      await db.collection("users").add(userData);
+      console.log(
+        "nuevo usuario creado con exito"
+      );
+      history.push("./inventories");
+    } catch (error) {
+      console.log(error);
+    }
+  };
   return (
-    <div className="row" style={styles.row}>
-      <div className="col-md-4"></div>
-      <div className="col-md-4" style={styles.centerColumn}>
-        <div className="d-flex flex-column justify-content-around align-items-center">
-          <h4>Create a new user</h4>
-          <div>
-            <label>Username:</label>
-            <input type="text"></input>
-          </div>
-          <div>
-            <label>Username:</label>
-            <input type="text"></input>
-          </div>
-          <div>
-            <label>Username:</label>
-            <input type="text"></input>
-          </div>
-          <button>Register</button>
-        </div>
+    <div className="row">
+      <div className="col-md-3"></div>
+      <div
+        className="col-md-6 d-flex flex-column justify-content-center"
+        style={{ minHeight: "100vh" }}
+      >
+        <h1>Registrate</h1>
+        <Form>
+          <Form.Group controlId="formBasicEmail">
+            <Form.Label>Email</Form.Label>
+            <Form.Control
+              type="email"
+              placeholder="Enter email"
+              onChange={(e) => {
+                setEmail(e.target.value);
+              }}
+            />
+            <Form.Text className="text-muted">
+              No compartiremos tu email con nadie ni será visible para otros
+              usuarios.
+            </Form.Text>
+          </Form.Group>
+
+          <Form.Group>
+            <Form.Label>Password</Form.Label>
+            <Form.Control
+              type="password"
+              placeholder="Password"
+              onChange={(e) => {
+                setPassword(e.target.value);
+              }}
+            />
+          </Form.Group>
+          <Button
+            block
+            variant="success"
+            type="submit"
+            onClick={(e) => {
+              e.preventDefault();
+              handleSignUp();
+            }}
+          >
+            Registrarme
+          </Button>
+        </Form>
+        <p>¿ Ya tienes cuenta ?</p>
+        <Link to="/signin">Ingresar</Link>
       </div>
-      <div className="col-md-4"></div>
+      <div className="col-md-3"></div>
     </div>
   );
-};
+}
 
-const styles = {
-  h1: { padding: "40px 10px" },
-  h4: { padding: "20px 0px", width: "100%" },
-  centerColumn: {
-    minHeight: "100vh",
-    display: "flex",
-    flexDirection: "column",
-    alignItems: "center",
-    justifyContent: "center",
-  },
-  row: { boxSizing: "border-box", padding: "0px 10px", margin: "0px" },
-};
 export default Register;
