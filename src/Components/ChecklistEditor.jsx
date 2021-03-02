@@ -1,5 +1,8 @@
 import React, { useState } from "react";
 
+import { useHistory } from "react-router-dom";
+import firebaseApp from "../firebaseApp";
+
 import "../index.css";
 
 // React-bootstrap
@@ -7,13 +10,47 @@ import Button from "react-bootstrap/Button";
 import InputGroup from "react-bootstrap/InputGroup";
 import FormControl from "react-bootstrap/FormControl";
 
-const ChecklistEditor = () => {
-  const [newField, setNewField] = useState("");
-  const [checklist, setChecklist] = useState([]);
+import ChecklistSchema from "../Models/ChecklistSchema";
 
-  const addItemToChecklist = (itemName) => {
-    console.log(itemName);
-    return;
+import Utils from "../utilities";
+
+const ChecklistEditor = () => {
+  const db = firebaseApp.firestore();
+  const history = useHistory();
+
+  // State
+  const [newField, setNewField] = useState("");
+  const [fields, setFields] = useState([]);
+
+  //Methods
+  const saveChecklist = async () => {
+    let checklist = ChecklistSchema;
+    checklist = {
+      ...checklist,
+      fields,
+      date: new Date(),
+    };
+    try {
+      await db.collection("checklists").add(checklist);
+      console.log("se ha creado una checklist");
+      history.push("./");
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const addFieldToChecklist = () => {
+    const newFields = [
+      ...fields,
+      { name: newField, status: "unchecked", id: Utils.makeId(8) },
+    ];
+    setFields(newFields);
+    setNewField("");
+    console.log(newFields);
+  };
+
+  const clearChecklist = () => {
+    setFields([]);
   };
   return (
     <div className="row" style={styles.row}>
@@ -23,15 +60,14 @@ const ChecklistEditor = () => {
           <h1 className="page-title">Checklist Editor</h1>
 
           <div style={styles.blockContainer}>
-            <h4 className="block-title">This items are currently in my checklist:</h4>
+            <h4 className="block-title">
+              This items are currently in my checklist:
+            </h4>
             <ul style={styles.itemsList}>
-              {checklist.length === 0 && <p>There are no items yet</p>}
-              {checklist.map((field) => {
+              {fields.length === 0 && <p>There are no items yet</p>}
+              {fields.map((field) => {
                 return (
-                  <div
-                    className="checklist-editor-row d-flex justify-content-between align-items-center"
-
-                  >
+                  <div className="checklist-editor-row d-flex justify-content-between align-items-center">
                     <label>{field.name}</label>
                     <Button variant="outline-danger">x</Button>
                   </div>
@@ -55,13 +91,7 @@ const ChecklistEditor = () => {
                 <Button
                   variant="outline-success"
                   onClick={() => {
-                    const newFields = [
-                      ...checklist,
-                      { name: newField, status: "unchecked" },
-                    ];
-                    setChecklist(newFields);
-                    setNewField("");
-                    console.log(newFields);
+                    addFieldToChecklist();
                   }}
                 >
                   +
@@ -74,13 +104,25 @@ const ChecklistEditor = () => {
             className="d-flex flex-column justify-content-between align-items-center"
           >
             <h4 className="block-title">Do this with my checklist:</h4>
-            <Button block variant="outline-success">
+            <Button
+              onClick={() => {
+                saveChecklist();
+              }}
+              block
+              variant="outline-success"
+            >
               Save
             </Button>
-            <Button block variant="outline-info">
+            <Button
+              onClick={() => {
+                clearChecklist();
+              }}
+              block
+              variant="outline-info"
+            >
               Clear
             </Button>
-            <Button block variant="outline-danger">
+            <Button block variant="outline-danger" disabled>
               Delete
             </Button>
           </div>
