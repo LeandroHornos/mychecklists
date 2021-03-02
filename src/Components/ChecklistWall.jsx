@@ -1,47 +1,78 @@
-import React from "react";
+import React, { useState, useEffect, useContext } from "react";
+import Utils from "../utilities";
 
+// Firebase
+import firebaseApp from "../firebaseApp";
+import { AuthContext } from "../Auth";
 
+// Router
+import { useHistory } from "react-router-dom";
 
-// React-bootstrap
-import Button from "react-bootstrap/Button";
-import InputGroup from "react-bootstrap/InputGroup";
-import FormControl from "react-bootstrap/FormControl";
-const ChecklistWall = () => {
+const ChecklistWall = (props) => {
+  // const triplets = Utils.groupAsTriplets(props.data);
 
-  
+  const db = firebaseApp.firestore();
+  const ref = db.collection("checklists");
+
+  // Auth:
+  const { currentUser } = useContext(AuthContext);
+
+  // Router
+  const history = useHistory();
+
+  // State:
+  const [checklists, setChecklists] = useState([]);
+  const [loading, setLoading] = useState(true); // Carga de la vista principal
+
+  useEffect(() => {
+    // Cargar los inventarios al acceder a esta ruta:
+
+    const fetchData = async () => {
+      console.log("vamos a buscar las checklists de", currentUser);
+      try {
+        await ref
+          .where("creatorid", "==", currentUser.uid)
+          .get()
+          .then((items) => {
+            const lists = items.docs.map((doc) => {
+              return { ...doc.data(), id: doc.id };
+            });
+            setChecklists(Utils.groupAsTriplets(lists));
+            setLoading(false);
+          });
+      } catch (error) {
+        console.log(error);
+        // history.push("/error");
+      }
+    };
+
+    fetchData();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
   return (
-    <div className="row" style={styles.row}>
-      <div className="col-md-4"></div>
-      <div className="col-md-4" style={styles.centerColumn}>
-        <div className="d-flex flex-column justify-content-around align-items-center">
-          <h4>ChecklistWall</h4>
-
-          <div>
-            <label>Username:</label>
-            <input type="text"></input>
+    <div>
+      {checklists.map((triplet) => {
+        return (
+          <div className="row" key={Utils.makeId(4)}>
+            {triplet.map((checklist) => {
+              return (
+                <div className="col-md-4">
+                  <h4 key={checklist.uid}>{checklist.name}</h4>
+                  <ul>
+                    {checklist.fields.map((field) => {
+                      return <li key={field.id}>{field.name}</li>;
+                    })}
+                  </ul>
+                  ;
+                </div>
+              );
+            })}
           </div>
-          <div>
-            <label>Password:</label>
-            <input type="password"></input>
-          </div>
-          <button>ChecklistWall</button>
-        </div>
-      </div>
-      <div className="col-md-4"></div>
+        );
+      })}
     </div>
   );
 };
 
-const styles = {
-  h1: { padding: "40px 10px" },
-  h4: { padding: "20px 0px", width: "100%" },
-  centerColumn: {
-    minHeight: "100vh",
-    display: "flex",
-    flexDirection: "column",
-    alignItems: "center",
-    justifyContent: "center",
-  },
-  row: { boxSizing: "border-box", padding: "0px 10px", margin: "0px" },
-};
 export default ChecklistWall;

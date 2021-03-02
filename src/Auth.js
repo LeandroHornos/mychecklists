@@ -7,8 +7,11 @@ export const AuthProvider = ({ children }) => {
   const [currentUser, setCurrentUser] = useState(null);
 
   useEffect(() => {
-    firebaseApp.auth().onAuthStateChanged(setCurrentUser);
-  }, []);
+    firebaseApp.auth().onAuthStateChanged((user) => {
+      setCurrentUser(user);
+    });
+    console.log("usuario logueado", currentUser);
+  });
 
   return (
     <AuthContext.Provider value={{ currentUser }}>
