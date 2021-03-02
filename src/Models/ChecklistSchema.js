@@ -1,5 +1,6 @@
 const ChecklistSchema = {
   date: "",
+  creatorid:"",
   fields: [],
   history: [],
 };

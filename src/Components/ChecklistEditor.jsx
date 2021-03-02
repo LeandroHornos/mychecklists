@@ -1,6 +1,9 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 
 import { useHistory } from "react-router-dom";
+
+/* Firebase */
+import { AuthContext } from "../Auth";
 import firebaseApp from "../firebaseApp";
 
 import "../index.css";
@@ -15,6 +18,7 @@ import ChecklistSchema from "../Models/ChecklistSchema";
 import Utils from "../utilities";
 
 const ChecklistEditor = () => {
+  const { currentUser } = useContext(AuthContext);
   const db = firebaseApp.firestore();
   const history = useHistory();
 
@@ -29,10 +33,11 @@ const ChecklistEditor = () => {
       ...checklist,
       fields,
       date: new Date(),
+      creatorid: currentUser.uid,
     };
     try {
       await db.collection("checklists").add(checklist);
-      console.log("se ha creado una checklist");
+      console.log("se ha creado una checklist", checklist);
       history.push("./");
     } catch (error) {
       console.log(error);
@@ -67,7 +72,10 @@ const ChecklistEditor = () => {
               {fields.length === 0 && <p>There are no items yet</p>}
               {fields.map((field) => {
                 return (
-                  <div className="checklist-editor-row d-flex justify-content-between align-items-center">
+                  <div
+                    key={field.id}
+                    className="checklist-editor-row d-flex justify-content-between align-items-center"
+                  >
                     <label>{field.name}</label>
                     <Button variant="outline-danger">x</Button>
                   </div>
