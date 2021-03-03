@@ -54,25 +54,20 @@ const ChecklistWall = (props) => {
 
   return (
     <div
-      style={{
-        width: "100%",
-        minHeight: "100vh",
-        backgroundColor: "green",
-      }}
+    className="checklist-wall-window"
     >
       {checklists.map((triplet) => {
         return (
           <div
             className="row"
             key={Utils.makeId(4)}
-            style={{ backgroundColor: "blue", width: "100%", padding:"0px", boxSizing:"border-box", margin:"auto" }}
+            style={{ width: "100%", margin:"auto" }}
           >
             {triplet.map((checklist) => {
               return (
                 <div
                   key={Utils.makeId(4)}
                   className="col-md-4"
-                  style={{ backgroundColor: "red" }}
                 >
                   <div className="checklist-card">
                     <h4>{checklist.name}</h4>
