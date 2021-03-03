@@ -31,13 +31,15 @@ const ChecklistWall = (props) => {
       console.log("vamos a buscar las checklists de", currentUser);
       try {
         await ref
-          .get()
+
           .where("creatorid", "==", currentUser.uid)
+          .get()
           .then((items) => {
             const lists = items.docs.map((doc) => {
               return { ...doc.data(), id: doc.id };
             });
             setChecklists(Utils.groupAsTriplets(lists));
+            console.log("estas son las checklists", lists);
             setLoading(false);
           });
       } catch (error) {
@@ -57,14 +59,15 @@ const ChecklistWall = (props) => {
           <div className="row" key={Utils.makeId(4)}>
             {triplet.map((checklist) => {
               return (
-                <div className="col-md-4">
-                  <h4 key={checklist.uid}>{checklist.name}</h4>
-                  <ul>
-                    {checklist.fields.map((field) => {
-                      return <li key={field.id}>{field.name}</li>;
-                    })}
-                  </ul>
-                  ;
+                <div key={Utils.makeId(4)} className="col-md-4">
+                  <div className="checklist-card">
+                    <h4>{checklist.name}</h4>
+                    <ul>
+                      {checklist.fields.map((field) => {
+                        return <li key={Utils.makeId(4)}>{field.name}</li>;
+                      })}
+                    </ul>
+                  </div>
                 </div>
               );
             })}
