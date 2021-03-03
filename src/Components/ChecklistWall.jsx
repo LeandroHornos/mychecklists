@@ -53,18 +53,39 @@ const ChecklistWall = (props) => {
   }, currentUser);
 
   return (
-    <div>
+    <div
+      style={{
+        width: "100%",
+        minHeight: "100vh",
+        backgroundColor: "green",
+      }}
+    >
       {checklists.map((triplet) => {
         return (
-          <div className="row" key={Utils.makeId(4)}>
+          <div
+            className="row"
+            key={Utils.makeId(4)}
+            style={{ backgroundColor: "blue", width: "100%", padding:"0px", boxSizing:"border-box", margin:"auto" }}
+          >
             {triplet.map((checklist) => {
               return (
-                <div key={Utils.makeId(4)} className="col-md-4">
+                <div
+                  key={Utils.makeId(4)}
+                  className="col-md-4"
+                  style={{ backgroundColor: "red" }}
+                >
                   <div className="checklist-card">
                     <h4>{checklist.name}</h4>
-                    <ul>
+                    <ul style={{ listStyle: "none" }}>
                       {checklist.fields.map((field) => {
-                        return <li key={Utils.makeId(4)}>{field.name}</li>;
+                        return (
+                          <li
+                            key={Utils.makeId(4)}
+                            style={{ textDecoration: "none" }}
+                          >
+                            {field.name}
+                          </li>
+                        );
                       })}
                     </ul>
                   </div>
