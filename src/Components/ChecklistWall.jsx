@@ -31,8 +31,8 @@ const ChecklistWall = (props) => {
       console.log("vamos a buscar las checklists de", currentUser);
       try {
         await ref
-          .where("creatorid", "==", currentUser.uid)
           .get()
+          .where("creatorid", "==", currentUser.uid)
           .then((items) => {
             const lists = items.docs.map((doc) => {
               return { ...doc.data(), id: doc.id };
@@ -48,7 +48,7 @@ const ChecklistWall = (props) => {
 
     fetchData();
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, currentUser);
 
   return (
     <div>

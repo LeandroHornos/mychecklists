@@ -133,6 +133,15 @@ const ChecklistEditor = () => {
             <Button block variant="outline-danger" disabled>
               Delete
             </Button>
+            <Button
+              onClick={() => {
+                history.push("./checklists");
+              }}
+              block
+              variant="outline-danger"
+            >
+              VER CHECKLISTS
+            </Button>
           </div>
         </div>
       </div>
