@@ -1,11 +1,16 @@
 @import url("https://fonts.googleapis.com/css2?family=Ubuntu:wght@300;400;500&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Patrick+Hand&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Architects+Daughter&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Kalam&display=swap");
 
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: "Ubuntu", "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
-    "Lucida Sans Unicode", sans-serif;
+  /* font-family: "Ubuntu", "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
+    "Lucida Sans Unicode", sans-serif; */
+  font-family: "Patrick Hand", "Lucida Sans", "Lucida Sans Regular",
+    "Lucida Grande", "Lucida Sans Unicode", sans-serif;
 }
 
 #root {
@@ -20,14 +25,18 @@
 
 .page-title {
   color: rgb(238, 75, 0);
-  padding: 40px 10px;
+  text-align: center;
+  background-color: rgba(255, 255, 255, 0.5);
+  border-radius: 5px;
 }
 
 .block-title {
-  font-size: 1.2em;
+  font-size: 1.4em;
   padding: 20px 0px;
   width: 100%;
   color: rgb(7, 95, 105);
+  font-family: "Patrick Hand", "Lucida Sans", "Lucida Sans Regular",
+    "Lucida Grande", "Lucida Sans Unicode", sans-serif;
 }
 
 .checklist-editor-row {
@@ -42,11 +51,28 @@
 
 .checklist-card {
   padding: 10px;
-  background-color: #fff3db;
-  background-image: url("./img/groovepaper.png");
+  color: rgb(52, 68, 80);
+  background-color: white;
+  /* background-image: url("./img/groovepaper.png"); */
   margin: 10px;
   border-radius: 2px;
   box-shadow: 0px 0px 20px 3px rgba(0, 0, 0, 0.5);
+}
+
+.checklist-card-title {
+  color: rgb(7, 95, 105);
+}
+
+.block-container {
+  width: 100%;
+  padding: 20px 10px;
+  border: solid;
+  border-width: 1px;
+  border-color: rgb(200, 200, 200);
+  border-radius: 3px;
+  margin-bottom: 20px;
+  box-shadow: 0px 0px 15px 1px rgba(0, 0, 0, 0.5);
+  background-color: white;
 }
 
 .checklist-wall-window {
@@ -54,4 +80,19 @@
   min-height: 100vh;
   background-color: #374240;
   background-image: url("./img/diagonal-noise.png");
+}
+
+.fabric-background {
+  background-color: #374240;
+  background-image: url("./img/diagonal-noise.png");
+}
+
+.paper-background {
+  background-color: #fff3db;
+  /* background-image: url("./img/groovepaper.png"); */
+}
+
+.handwritten {
+  font-family: "Patrick Hand", "Lucida Sans", "Lucida Sans Regular",
+    "Lucida Grande", "Lucida Sans Unicode", sans-serif;
 }

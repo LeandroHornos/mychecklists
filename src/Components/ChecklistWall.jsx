@@ -53,30 +53,31 @@ const ChecklistWall = (props) => {
   }, currentUser);
 
   return (
-    <div
-    className="checklist-wall-window"
-    >
+    <div className="checklist-wall-window">
       {checklists.map((triplet) => {
         return (
           <div
             className="row"
             key={Utils.makeId(4)}
-            style={{ width: "100%", margin:"auto" }}
+            style={{ width: "100%", margin: "auto" }}
           >
             {triplet.map((checklist) => {
               return (
-                <div
-                  key={Utils.makeId(4)}
-                  className="col-md-4"
-                >
+                <div key={Utils.makeId(4)} className="col-md-4">
                   <div className="checklist-card">
-                    <h4>{checklist.name}</h4>
+                    <h4
+                      className="handwritten checklist-card-title"
+                      style={{ textAlign: "center", fontSize: "2em" }}
+                    >
+                      {checklist.name}
+                    </h4>
                     <ul style={{ listStyle: "none" }}>
                       {checklist.fields.map((field) => {
                         return (
                           <li
                             key={Utils.makeId(4)}
-                            style={{ textDecoration: "none" }}
+                            style={{ fontSize: "1.3em" }}
+                            className="handwritten"
                           >
                             {field.name}
                           </li>

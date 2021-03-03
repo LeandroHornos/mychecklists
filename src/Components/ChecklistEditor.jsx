@@ -24,6 +24,7 @@ const ChecklistEditor = () => {
 
   // State
   const [newField, setNewField] = useState("");
+  const [checklistName, setChecklistName] = useState("");
   const [fields, setFields] = useState([]);
 
   //Methods
@@ -34,6 +35,7 @@ const ChecklistEditor = () => {
       fields,
       date: new Date(),
       creatorid: currentUser.uid,
+      name: checklistName,
     };
     try {
       await db.collection("checklists").add(checklist);
@@ -58,13 +60,59 @@ const ChecklistEditor = () => {
     setFields([]);
   };
   return (
-    <div className="row" style={styles.row}>
-      <div className="col-md-4"></div>
-      <div className="col-md-4" style={styles.centerColumn}>
-        <div className="d-flex flex-column justify-content-around align-items-center my-checklist">
+    <React.Fragment>
+      <div className="row fabric-background" style={styles.row}>
+        <div className="col-12">
           <h1 className="page-title">Checklist Editor</h1>
+        </div>
+      </div>
+      <div className="row fabric-background" style={styles.row}>
+        <div className="col-md-4" style={styles.centerColumn}>
+          <div className="d-flex flex-column my-checklist">
+            <div className="block-container">
+              <h4 className="block-title">Checklist Name:</h4>
+              <InputGroup className="mb-3">
+                <FormControl
+                  placeholder="Checklist name"
+                  aria-label="Checklist name"
+                  aria-describedby="basic-addon2"
+                  value={checklistName}
+                  onChange={(e) => {
+                    setChecklistName(e.target.value);
+                  }}
+                />
+              </InputGroup>
+            </div>
 
-          <div style={styles.blockContainer}>
+            <div className="block-container">
+              <h4 className="block-title handwritten">Add this item to my checklist:</h4>
+              <InputGroup className="mb-3">
+                <FormControl
+                  placeholder="Nombre del item"
+                  aria-label="Nombre del item"
+                  aria-describedby="basic-addon2"
+                  value={newField}
+                  onChange={(e) => {
+                    setNewField(e.target.value);
+                  }}
+                />
+                <InputGroup.Append>
+                  <Button
+                    variant="outline-success"
+                    onClick={() => {
+                      addFieldToChecklist();
+                    }}
+                  >
+                    +
+                  </Button>
+                </InputGroup.Append>
+              </InputGroup>
+            </div>
+          </div>
+        </div>
+        <div className="col-md-4">
+          {" "}
+          <div className="block-container">
             <h4 className="block-title">
               This items are currently in my checklist:
             </h4>
@@ -83,34 +131,10 @@ const ChecklistEditor = () => {
               })}
             </ul>
           </div>
-          <div style={styles.blockContainer}>
-            <h4 className="block-title">Add this item to my checklist:</h4>
-            <InputGroup className="mb-3">
-              <FormControl
-                placeholder="Nombre del item"
-                aria-label="Nombre del item"
-                aria-describedby="basic-addon2"
-                value={newField}
-                onChange={(e) => {
-                  setNewField(e.target.value);
-                }}
-              />
-              <InputGroup.Append>
-                <Button
-                  variant="outline-success"
-                  onClick={() => {
-                    addFieldToChecklist();
-                  }}
-                >
-                  +
-                </Button>
-              </InputGroup.Append>
-            </InputGroup>
-          </div>
-          <div
-            style={styles.blockContainer}
-            className="d-flex flex-column justify-content-between align-items-center"
-          >
+        </div>
+        <div className="col-md-4">
+          {" "}
+          <div className="d-flex flex-column justify-content-between align-items-center block-container">
             <h4 className="block-title">Do this with my checklist:</h4>
             <Button
               onClick={() => {
@@ -145,8 +169,7 @@ const ChecklistEditor = () => {
           </div>
         </div>
       </div>
-      <div className="col-md-4"></div>
-    </div>
+    </React.Fragment>
   );
 };
 
