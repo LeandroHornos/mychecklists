@@ -7,6 +7,10 @@ import { useParams } from "react-router";
 // Firebase
 import firebaseApp from "../firebaseApp";
 
+import Button from "react-bootstrap/Button";
+
+import NavigationBar from "./NavigationBar";
+
 const Checklist = () => {
   const { id } = useParams();
   // Router
@@ -42,30 +46,52 @@ const Checklist = () => {
   }, []);
   return (
     <div className="checklist-wall-window">
+      <NavigationBar/>
       <div className="row fabric-background" style={styles.row}>
         <div className="col-12">
-          <h1 className="page-title">{checklist.name}</h1>
-          <ul>
-            {!loading &&
-              checklist.fields.map((field) => {
-                return <li key={field.id}>{field.name}</li>;
-              })}
-          </ul>
+          <h1 className="page-title">My Checklist</h1>
         </div>
       </div>
 
-      <div className="row">
-        <div className="col-md-4"></div>
-        <div className="col-md-4" style={styles.centerColumn}>
-          <div className="d-flex flex-column justify-content-around align-items-center">
-            <h4
-              style={{ color: "white", fontSize: "1.8em", padding: "20px 0px" }}
-            >
-              Welcome to MyChecklists
-            </h4>
+      <div className="row" style={styles.row}>
+        <div className="col-lg-3 col-md-2"></div>
+        <div className="col-lg-6 col-md-8" style={styles.centerColumn}>
+          <div className="block-container d-flex flex-column justify-content-around align-items-center">
+            <h4 className="checklist-title">{checklist.name}</h4>
+            <div style={{ width: "100%", padding: "10px" }}>
+              {!loading &&
+                checklist.fields.map((field) => {
+                  return (
+                    <div className="row" key={field.id}>
+                      <div className="col-8">
+                        <p>{field.name}</p>
+                      </div>
+                      <div className="col-1">
+                        <Button size="sm" variant="outline-dark">
+                          i
+                        </Button>
+                      </div>
+                      <div className="col-1">
+                        <Button size="sm" variant="outline-success">
+                          Y
+                        </Button>
+                      </div>
+                      <div className="col-1">
+                        <Button size="sm" variant="danger">
+                          N
+                        </Button>
+                      </div>
+                      <div className="col-1"></div>
+                    </div>
+                  );
+                })}
+              <Button block variant="danger" style={{ marginTop: "40px" }}>
+                Checklist is not complete yet!
+              </Button>
+            </div>
           </div>
         </div>
-        <div className="col-md-4"></div>
+        <div className="col-lg-3 col-md-2"></div>
       </div>
     </div>
   );
@@ -84,7 +110,6 @@ const styles = {
     boxSizing: "border-box",
     padding: "0px 10px",
     margin: "0px",
-    minHeight: "100vh",
   },
 };
 export default Checklist;

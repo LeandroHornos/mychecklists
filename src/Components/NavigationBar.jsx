@@ -7,7 +7,9 @@ import NavDropdown from "react-bootstrap/NavDropdown";
 const NavigationBar = () => {
   return (
     <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
-      <Navbar.Brand href="./">My Checklists</Navbar.Brand>
+      <Navbar.Brand href="./">
+        Checklist<span style={{ color: "red" }}>-</span>me
+      </Navbar.Brand>
       <Navbar.Toggle aria-controls="responsive-navbar-nav" />
       <Navbar.Collapse id="responsive-navbar-nav">
         <Nav className="mr-auto">

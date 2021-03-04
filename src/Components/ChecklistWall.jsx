@@ -60,7 +60,7 @@ const ChecklistWall = (props) => {
       <NavigationBar />
       <div className="row fabric-background" style={{ margin: "0px" }}>
         <div className="col-12">
-          <h1 className="page-title">HERE ARE ALL MY CHECKLISTS</h1>
+          <h1 className="page-title">This are all your checklists:</h1>
         </div>
       </div>
       <div className="checklist-wall-window">

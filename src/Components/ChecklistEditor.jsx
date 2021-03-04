@@ -68,7 +68,7 @@ const ChecklistEditor = () => {
       <div className="row fabric-background" style={styles.row}>
         <div className="col-12">
           <h1 className="page-title">
-            HERE IS WHERE I CREATE AND EDIT CHECKLISTS
+            Create a new checklist or edit an existing one:
           </h1>
         </div>
       </div>
@@ -82,7 +82,7 @@ const ChecklistEditor = () => {
               <h4 className="block-title">Checklist Name:</h4>
               <InputGroup className="mb-3">
                 <FormControl
-                  placeholder="Choose a name for the checklist"
+                  placeholder="Choose a name for the new checklist"
                   aria-label="Checklist name"
                   aria-describedby="basic-addon2"
                   value={checklistName}
