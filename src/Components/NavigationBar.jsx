@@ -7,14 +7,14 @@ import NavDropdown from "react-bootstrap/NavDropdown";
 const NavigationBar = () => {
   return (
     <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
-      <Navbar.Brand href="./">
+      <Navbar.Brand href="/">
         Checklist<span style={{ color: "red" }}>-</span>me
       </Navbar.Brand>
       <Navbar.Toggle aria-controls="responsive-navbar-nav" />
       <Navbar.Collapse id="responsive-navbar-nav">
         <Nav className="mr-auto">
-          <Nav.Link href="./checklists">Checklists</Nav.Link>
-          <Nav.Link href="./edit">New</Nav.Link>
+          <Nav.Link href="/checklists">Checklists</Nav.Link>
+          <Nav.Link href="/edit">New</Nav.Link>
           <NavDropdown title="Dropdown" id="collasible-nav-dropdown">
             <NavDropdown.Item href="#action/3.1">Action</NavDropdown.Item>
             <NavDropdown.Item href="#action/3.2">

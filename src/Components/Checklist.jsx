@@ -49,7 +49,7 @@ const Checklist = () => {
       <NavigationBar/>
       <div className="row fabric-background" style={styles.row}>
         <div className="col-12">
-          <h1 className="page-title">My Checklist</h1>
+          <h1 className="page-title">{checklist.name}</h1>
         </div>
       </div>
 
@@ -57,7 +57,6 @@ const Checklist = () => {
         <div className="col-lg-3 col-md-2"></div>
         <div className="col-lg-6 col-md-8" style={styles.centerColumn}>
           <div className="block-container d-flex flex-column justify-content-around align-items-center">
-            <h4 className="checklist-title">{checklist.name}</h4>
             <div style={{ width: "100%", padding: "10px" }}>
               {!loading &&
                 checklist.fields.map((field) => {

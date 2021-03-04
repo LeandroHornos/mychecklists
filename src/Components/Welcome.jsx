@@ -17,9 +17,11 @@ const Welcome = () => {
             <h2
               style={{ color: "white", fontSize: "2em", padding: "20px 0px" }}
             >
-              Welcome to Checklistocracy
+              Welcome to Checklist<span style={{ color: "red" }}>-</span>me
             </h2>
-            <p style={{color:"white"}}> Conquer the world, one checklist at a time</p>
+            <p style={{ color: "white" }}>
+              Conquer the world, one checklist at a time
+            </p>
 
             <Button
               onClick={() => {

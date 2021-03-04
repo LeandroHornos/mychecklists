@@ -6,7 +6,7 @@ import firebaseApp from "../firebaseApp";
 import { AuthContext } from "../Auth";
 
 // Router
-// import { useHistory } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 // Components
 
@@ -23,13 +23,11 @@ const ChecklistWall = (props) => {
 
   // Router
 
-
   // State:
   const [checklists, setChecklists] = useState([]);
   // const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-
     const fetchData = async () => {
       console.log("vamos a buscar las checklists de", currentUser);
       try {
@@ -75,12 +73,15 @@ const ChecklistWall = (props) => {
                 return (
                   <div key={Utils.makeId(4)} className="col-md-4">
                     <div className="checklist-card">
-                      <h4
-                        className="handwritten checklist-card-title"
-                        style={{ textAlign: "center", fontSize: "2em" }}
-                      >
-                        {checklist.name}
-                      </h4>
+                      <Link to={"/view/" + checklist.id}>
+                        <h4
+                          className="handwritten checklist-card-title"
+                          style={{ textAlign: "center", fontSize: "2em" }}
+                        >
+                          {checklist.name}
+                        </h4>
+                      </Link>
+
                       <ul style={{ listStyle: "none" }}>
                         {checklist.fields.map((field) => {
                           return (
