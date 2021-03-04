@@ -1,100 +1,56 @@
-import React, { useState } from "react";
-
-import "../index.css";
+import React, { useEffect } from "react";
 
 // React-bootstrap
-import Button from "react-bootstrap/Button";
-import InputGroup from "react-bootstrap/InputGroup";
-import FormControl from "react-bootstrap/FormControl";
+import { useHistory } from "react-router-dom";
+import { useParams } from "react-router";
 
 const Checklist = () => {
-  const [newField, setNewField] = useState("");
-  const [checklist, setChecklist] = useState([]);
+  const { id } = useParams();
+  // Router
+  const history = useHistory();
 
-  const addItemToChecklist = (itemName) => {
-    console.log(itemName);
-    return;
-  };
+  useEffect(() => {
+    console.log("Deseo ver la checklist con este id:",id);
+  }, []);
   return (
-    <div className="row" style={styles.row}>
-      <div className="col-md-4"></div>
-      <div className="col-md-4" style={styles.centerColumn}>
-        <div className="d-flex flex-column justify-content-around align-items-center my-checklist">
-          <h1 className="page-title">My Checklist</h1>
-
-          <div style={styles.blockContainer}>
-            <h4
-              className="block-title"
-              style={{
-                textAlign: "center",
-                width: "100%",
-              }}
-            >
-              Checklist Name
-            </h4>
-            <ul style={styles.itemsList}>
-              {checklist.length === 0 && <p>There are no items yet</p>}
-              {checklist.map((field) => {
-                return (
-                  <div className="checklist-editor-row d-flex justify-content-between align-items-center">
-                    <label>{field.name}</label>
-                    <Button variant="outline-danger">x</Button>
-                  </div>
-                );
-              })}
-            </ul>
-          </div>
-
-          <div
-            style={styles.blockContainer}
-            className="d-flex flex-column justify-content-between align-items-center"
-          >
-            <h4 className="block-title">Do this with my checklist:</h4>
-            <Button block variant="outline-success">
-              Save
-            </Button>
-            <Button block variant="outline-info">
-              Clear
-            </Button>
-            <Button block variant="outline-danger">
-              Delete
-            </Button>
-          </div>
+    <div className="checklist-wall-window">
+      <div className="row fabric-background" style={styles.row}>
+        <div className="col-12">
+          <h1 className="page-title">View Checklist</h1>
         </div>
       </div>
-      <div className="col-md-4"></div>
+
+      <div className="row">
+        <div className="col-md-4"></div>
+        <div className="col-md-4" style={styles.centerColumn}>
+          <div className="d-flex flex-column justify-content-around align-items-center">
+            <h4
+              style={{ color: "white", fontSize: "1.8em", padding: "20px 0px" }}
+            >
+              Welcome to MyChecklists
+            </h4>
+          </div>
+        </div>
+        <div className="col-md-4"></div>
+      </div>
     </div>
   );
 };
 
 const styles = {
+  h1: { padding: "40px 10px" },
   h4: { padding: "20px 0px", width: "100%" },
-  blockContainer: {
-    width: "100%",
-    padding: "20px 10px",
-    border: "solid",
-    borderWidth: "1px",
-    borderColor: "rgb(200,200,200)",
-    borderRadius: "10px",
-    marginBottom: "20px",
-    boxShadow: "0px 0px 5px 1px rgba(0,0,0,0.2)",
+  centerColumn: {
+    display: "flex",
+    flexDirection: "column",
+    alignItems: "center",
+    justifyContent: "center",
   },
-  itemsList: { width: "100%" },
-  actionButtonsContainer: {
-    width: "100%",
-    padding: "20px 10px",
+  row: {
+    boxSizing: "border-box",
+    padding: "0px 10px",
+    margin: "0px",
+    minHeight: "100vh",
   },
-  checklistEditorRow: {
-    padding: "8px",
-    marginBottom: "10px",
-    border: "solid",
-    borderColor: "rgb(200,200,200)",
-    borderWidth: "1px",
-    borderRadius: "5px",
-    boxShadow: "0px 0px 5px 1px rgba(0,0,0,0.2)",
-  },
-  centerColumn: { minHeight: "100vh" },
-  row: { boxSizing: "border-box", padding: "10px", margin: "0px" },
 };
-
 export default Checklist;

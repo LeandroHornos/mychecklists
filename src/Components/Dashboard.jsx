@@ -54,7 +54,6 @@ const styles = {
   h1: { padding: "40px 10px" },
   h4: { padding: "20px 0px", width: "100%" },
   centerColumn: {
-    minHeight: "100vh",
     display: "flex",
     flexDirection: "column",
     alignItems: "center",
