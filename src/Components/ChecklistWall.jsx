@@ -59,10 +59,7 @@ const ChecklistWall = (props) => {
   return (
     <React.Fragment>
       <NavigationBar />
-      <div
-        className="row fabric-background"
-        style={{ margin: "0px" }}
-      >
+      <div className="row fabric-background" style={{ margin: "0px" }}>
         <div className="col-12">
           <h1 className="page-title">HERE ARE ALL MY CHECKLISTS</h1>
         </div>

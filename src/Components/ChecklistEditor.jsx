@@ -72,7 +72,10 @@ const ChecklistEditor = () => {
           </h1>
         </div>
       </div>
-      <div className="row fabric-background" style={styles.row}>
+      <div
+        className="row fabric-background"
+        style={{ ...styles.row, minHeight: "100vh" }}
+      >
         <div className="col-md-4">
           <div className="d-flex flex-column my-checklist">
             <div className="block-container">
@@ -199,7 +202,11 @@ const styles = {
     boxShadow: "0px 0px 5px 1px rgba(0,0,0,0.2)",
   },
   centerColumn: { minHeight: "100vh" },
-  row: { boxSizing: "border-box", padding: "10px", margin: "0px" },
+  row: {
+    boxSizing: "border-box",
+    padding: "10px",
+    margin: "0px",
+  },
 };
 
 export default ChecklistEditor;
