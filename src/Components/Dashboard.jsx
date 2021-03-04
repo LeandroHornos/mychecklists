@@ -11,20 +11,34 @@ const Dashboard = () => {
   // Router
   const history = useHistory();
   return (
-    <div className="row" style={styles.row}>
+    <div className="row checklist-wall-window">
       <div className="col-md-4"></div>
       <div className="col-md-4" style={styles.centerColumn}>
         <div className="d-flex flex-column justify-content-around align-items-center">
-          <h4>Welcome to MyChecklists</h4>
+          <h4
+            style={{ color: "white", fontSize: "1.8em", padding: "20px 0px" }}
+          >
+            Welcome to MyChecklists
+          </h4>
 
-          <Button onClick={() => {
+          <Button
+            onClick={() => {
               history.push("/checklists");
-            }} block> View My Checklists</Button>
+            }}
+            block
+            variant="outline-primary"
+            style={{ color: "white", padding: "10px 0px", margin: "10px 0px" }}
+          >
+            {" "}
+            View My Checklists
+          </Button>
           <Button
             onClick={() => {
               history.push("/edit");
             }}
             block
+            variant="outline-primary"
+            style={{ color: "white", padding: "10px 0px", margin: "10px 0px" }}
           >
             {" "}
             New Checklist
@@ -46,6 +60,11 @@ const styles = {
     alignItems: "center",
     justifyContent: "center",
   },
-  row: { boxSizing: "border-box", padding: "0px 10px", margin: "0px" },
+  row: {
+    boxSizing: "border-box",
+    padding: "0px 10px",
+    margin: "0px",
+    minHeight: "100vh",
+  },
 };
 export default Dashboard;
