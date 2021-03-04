@@ -5,6 +5,7 @@ import { useHistory } from "react-router-dom";
 /* Firebase */
 import { AuthContext } from "../Auth";
 import firebaseApp from "../firebaseApp";
+import ChecklistSchema from "../Models/ChecklistSchema";
 
 import "../index.css";
 
@@ -13,9 +14,11 @@ import Button from "react-bootstrap/Button";
 import InputGroup from "react-bootstrap/InputGroup";
 import FormControl from "react-bootstrap/FormControl";
 
-import ChecklistSchema from "../Models/ChecklistSchema";
-
 import Utils from "../utilities";
+
+// Components
+
+import NavigationBar from "./NavigationBar";
 
 const ChecklistEditor = () => {
   const { currentUser } = useContext(AuthContext);
@@ -61,19 +64,22 @@ const ChecklistEditor = () => {
   };
   return (
     <React.Fragment>
+      <NavigationBar />
       <div className="row fabric-background" style={styles.row}>
         <div className="col-12">
-          <h1 className="page-title">Checklist Editor</h1>
+          <h1 className="page-title">
+            HERE IS WHERE I CREATE AND EDIT CHECKLISTS
+          </h1>
         </div>
       </div>
       <div className="row fabric-background" style={styles.row}>
-        <div className="col-md-4" style={styles.centerColumn}>
+        <div className="col-md-4">
           <div className="d-flex flex-column my-checklist">
             <div className="block-container">
               <h4 className="block-title">Checklist Name:</h4>
               <InputGroup className="mb-3">
                 <FormControl
-                  placeholder="Checklist name"
+                  placeholder="Choose a name for the checklist"
                   aria-label="Checklist name"
                   aria-describedby="basic-addon2"
                   value={checklistName}
@@ -85,10 +91,12 @@ const ChecklistEditor = () => {
             </div>
 
             <div className="block-container">
-              <h4 className="block-title handwritten">Add this item to my checklist:</h4>
+              <h4 className="block-title handwritten">
+                Add this item to the list:
+              </h4>
               <InputGroup className="mb-3">
                 <FormControl
-                  placeholder="Nombre del item"
+                  placeholder="Add the name of an item to add on the list"
                   aria-label="Nombre del item"
                   aria-describedby="basic-addon2"
                   value={newField}
@@ -114,7 +122,7 @@ const ChecklistEditor = () => {
           {" "}
           <div className="block-container">
             <h4 className="block-title">
-              This items are currently in my checklist:
+              This items are currently in this checklist:
             </h4>
             <ul style={styles.itemsList}>
               {fields.length === 0 && <p>There are no items yet</p>}
@@ -156,15 +164,6 @@ const ChecklistEditor = () => {
             </Button>
             <Button block variant="outline-danger" disabled>
               Delete
-            </Button>
-            <Button
-              onClick={() => {
-                history.push("./checklists");
-              }}
-              block
-              variant="outline-danger"
-            >
-              VER CHECKLISTS
             </Button>
           </div>
         </div>

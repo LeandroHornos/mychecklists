@@ -8,6 +8,10 @@ import { AuthContext } from "../Auth";
 // Router
 import { useHistory } from "react-router-dom";
 
+// Components
+
+import NavigationBar from "./NavigationBar";
+
 const ChecklistWall = (props) => {
   // const triplets = Utils.groupAsTriplets(props.data);
 
@@ -53,45 +57,56 @@ const ChecklistWall = (props) => {
   }, currentUser);
 
   return (
-    <div className="checklist-wall-window">
-      {checklists.map((triplet) => {
-        return (
-          <div
-            className="row"
-            key={Utils.makeId(4)}
-            style={{ width: "100%", margin: "auto" }}
-          >
-            {triplet.map((checklist) => {
-              return (
-                <div key={Utils.makeId(4)} className="col-md-4">
-                  <div className="checklist-card">
-                    <h4
-                      className="handwritten checklist-card-title"
-                      style={{ textAlign: "center", fontSize: "2em" }}
-                    >
-                      {checklist.name}
-                    </h4>
-                    <ul style={{ listStyle: "none" }}>
-                      {checklist.fields.map((field) => {
-                        return (
-                          <li
-                            key={Utils.makeId(4)}
-                            style={{ fontSize: "1.3em" }}
-                            className="handwritten"
-                          >
-                            {field.name}
-                          </li>
-                        );
-                      })}
-                    </ul>
+    <React.Fragment>
+      <NavigationBar />
+      <div
+        className="row fabric-background"
+        style={{ margin: "0px" }}
+      >
+        <div className="col-12">
+          <h1 className="page-title">HERE ARE ALL MY CHECKLISTS</h1>
+        </div>
+      </div>
+      <div className="checklist-wall-window">
+        {checklists.map((triplet) => {
+          return (
+            <div
+              className="row"
+              key={Utils.makeId(4)}
+              style={{ width: "100%", margin: "auto" }}
+            >
+              {triplet.map((checklist) => {
+                return (
+                  <div key={Utils.makeId(4)} className="col-md-4">
+                    <div className="checklist-card">
+                      <h4
+                        className="handwritten checklist-card-title"
+                        style={{ textAlign: "center", fontSize: "2em" }}
+                      >
+                        {checklist.name}
+                      </h4>
+                      <ul style={{ listStyle: "none" }}>
+                        {checklist.fields.map((field) => {
+                          return (
+                            <li
+                              key={Utils.makeId(4)}
+                              style={{ fontSize: "1.3em" }}
+                              className="handwritten"
+                            >
+                              {field.name}
+                            </li>
+                          );
+                        })}
+                      </ul>
+                    </div>
                   </div>
-                </div>
-              );
-            })}
-          </div>
-        );
-      })}
-    </div>
+                );
+              })}
+            </div>
+          );
+        })}
+      </div>
+    </React.Fragment>
   );
 };
 
