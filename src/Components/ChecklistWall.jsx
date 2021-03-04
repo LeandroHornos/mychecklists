@@ -6,7 +6,7 @@ import firebaseApp from "../firebaseApp";
 import { AuthContext } from "../Auth";
 
 // Router
-import { useHistory } from "react-router-dom";
+// import { useHistory } from "react-router-dom";
 
 // Components
 
@@ -22,14 +22,13 @@ const ChecklistWall = (props) => {
   const { currentUser } = useContext(AuthContext);
 
   // Router
-  const history = useHistory();
+
 
   // State:
   const [checklists, setChecklists] = useState([]);
-  const [loading, setLoading] = useState(true); // Carga de la vista principal
+  // const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    // Cargar los inventarios al acceder a esta ruta:
 
     const fetchData = async () => {
       console.log("vamos a buscar las checklists de", currentUser);
@@ -44,7 +43,7 @@ const ChecklistWall = (props) => {
             });
             setChecklists(Utils.groupAsTriplets(lists));
             console.log("estas son las checklists", lists);
-            setLoading(false);
+            // setLoading(false);
           });
       } catch (error) {
         console.log(error);

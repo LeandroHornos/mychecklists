@@ -1,22 +1,56 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 
 // React-bootstrap
-import { useHistory } from "react-router-dom";
+// import { useHistory } from "react-router-dom";
 import { useParams } from "react-router";
+
+// Firebase
+import firebaseApp from "../firebaseApp";
 
 const Checklist = () => {
   const { id } = useParams();
   // Router
-  const history = useHistory();
+  // const history = useHistory();
+
+  const db = firebaseApp.firestore();
+  const ref = db.collection("checklists");
+
+  const [checklist, setChecklist] = useState({});
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    console.log("Deseo ver la checklist con este id:",id);
+    // Cargar los inventarios al acceder a esta ruta:
+
+    const fetchData = async () => {
+      try {
+        console.log("Deseo ver la checklist con este id:", id);
+        const itemdoc = await ref.doc(id).get();
+        const data = itemdoc.data();
+        console.log("obtuve este resultado", data);
+        setChecklist(data);
+        setLoading(false);
+      } catch (error) {
+        console.log(
+          "Item.jsx dice: Ha ocurrido un error al tratar de obtener el item de la base de datos:",
+          error
+        );
+      }
+    };
+
+    fetchData();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
   return (
     <div className="checklist-wall-window">
       <div className="row fabric-background" style={styles.row}>
         <div className="col-12">
-          <h1 className="page-title">View Checklist</h1>
+          <h1 className="page-title">{checklist.name}</h1>
+          <ul>
+            {!loading &&
+              checklist.fields.map((field) => {
+                return <li key={field.id}>{field.name}</li>;
+              })}
+          </ul>
         </div>
       </div>
 
