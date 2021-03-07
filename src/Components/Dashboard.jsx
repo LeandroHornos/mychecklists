@@ -72,7 +72,7 @@ const styles = {
     boxSizing: "border-box",
     padding: "0px 10px",
     margin: "0px",
-    minHeight: "100vh",
+    minHeight: "80vh",
   },
 };
 export default Dashboard;

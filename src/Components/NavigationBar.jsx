@@ -28,7 +28,7 @@ const NavigationBar = () => {
           </NavDropdown>
         </Nav>
         <Nav>
-          <Nav.Link href="./exit">Sign Out</Nav.Link>
+          <Nav.Link href="/exit">Sign Out</Nav.Link>
         </Nav>
       </Navbar.Collapse>
     </Navbar>

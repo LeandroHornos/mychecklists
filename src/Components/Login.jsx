@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-import { useHistory } from "react-router-dom";
+import { useHistory, Link } from "react-router-dom";
 
 // Firebase
 import firebaseApp from "../firebaseApp";
@@ -24,55 +24,92 @@ function Login() {
   };
 
   return (
-    <div className="row">
-      <div className="col-md-3"></div>
-      <div
-        className="col-md-6 d-flex flex-column justify-content-center"
-        style={{ minHeight: "100vh" }}
-      >
-        <h1>Ingresar</h1>
-        <Form>
-          <Form.Group controlId="formBasicEmail">
-            <Form.Label>Email</Form.Label>
-            <Form.Control
-              type="email"
-              placeholder="Enter email"
-              onChange={(e) => {
-                setEmail(e.target.value);
-              }}
-            />
-            <Form.Text className="text-muted">
-              No compartiremos tu email con nadie, ni será visible para otros
-              usuarios.
-            </Form.Text>
-          </Form.Group>
-
-          <Form.Group controlId="formBasicPassword">
-            <Form.Label>Password</Form.Label>
-            <Form.Control
-              type="password"
-              placeholder="Password"
-              onChange={(e) => {
-                setPassword(e.target.value);
-              }}
-            />
-          </Form.Group>
-          <Button
-            block
-            variant="success"
-            type="submit"
-            onClick={(e) => {
-              e.preventDefault();
-              handleSignIn();
+    <div className="checklist-wall-window">
+      <div className="row" style={styles.row}>
+        <div className="col-md-3"></div>
+        <div
+          className="col-md-6 d-flex flex-column justify-content-center"
+          style={{ minHeight: "100vh" }}
+        >
+          <Link
+            style={{
+              fontSize: "3.5em",
+              textAlign: "center",
+              color: "rgba(250,250,250,0.55)",
             }}
+            to="/"
           >
-            Entrar
-          </Button>
-        </Form>
+            Checklist<span style={{ color: "red" }}>-</span>me
+          </Link>
+          <h1 className="page-title" style={{ fontSize: "2.2em" }}>
+            Sign In
+          </h1>
+          <Form>
+            <Form.Group controlId="formBasicEmail">
+              <Form.Label style={{ color: "white" }}>Email</Form.Label>
+              <Form.Control
+                type="email"
+                placeholder="Enter email"
+                onChange={(e) => {
+                  setEmail(e.target.value);
+                }}
+              />
+            </Form.Group>
+
+            <Form.Group controlId="formBasicPassword">
+              <Form.Label style={{ color: "white" }}>Password</Form.Label>
+              <Form.Control
+                type="password"
+                placeholder="Password"
+                onChange={(e) => {
+                  setPassword(e.target.value);
+                }}
+              />
+            </Form.Group>
+            <Button
+              block
+              variant="success"
+              type="submit"
+              onClick={(e) => {
+                e.preventDefault();
+                handleSignIn();
+              }}
+            >
+              Enter
+            </Button>
+            <Button
+              block
+              variant="dark"
+              onClick={(e) => {
+                history.push("/register");
+              }}
+              style={{ color: "white" }}
+            >
+              I don't have an account
+            </Button>
+          </Form>
+        </div>
+        <div className="col-md-3"></div>
       </div>
-      <div className="col-md-3"></div>
     </div>
   );
 }
+
+const styles = {
+  h1: { padding: "40px 10px" },
+  h4: { padding: "20px 0px", width: "100%" },
+  centerColumn: {
+    display: "flex",
+    flexDirection: "column",
+    alignItems: "center",
+    justifyContent: "center",
+  },
+  row: {
+    boxSizing: "border-box",
+    padding: "0px 10px",
+    margin: "0px",
+    minHeight: "80vh",
+  },
+};
 
 export default Login;

@@ -1,7 +1,7 @@
 import React from "react";
 
 // Router
-import { useHistory } from "react-router-dom";
+import { useHistory, Link } from "react-router-dom";
 
 // Bootstrap
 import Button from "react-bootstrap/Button";
@@ -23,40 +23,75 @@ const SignOut = () => {
   };
 
   return (
-    <div className="row">
-      <div className="col-md-4"></div>
-      <div
-        className="col-md-4 d-flex flex-column justify-content-center align-items-center"
-        style={{ minHeight: "100vh" }}
-      >
+    <div className="checklist-wall-window">
+      <div className="row" style={styles.row}>
+        <div className="col-md-3"></div>
         <div
-          style={{ width: "100%" }}
-          className="d-flex flex-column justify-content-around align-items-center"
+          className="col-md-6 d-flex flex-column justify-content-center"
+          style={{ minHeight: "100vh" }}
         >
-          <img alt="" style={{ width: "70%" }} src="/img/girl-leaving-lab.svg"></img>
-          <h3 style={{ padding: "20px 10px" }}>¿ Te vas ?</h3>
+          <Link
+            style={{
+              fontSize: "3.5em",
+              textAlign: "center",
+              color: "rgba(250,250,250,0.55)",
+            }}
+            to="/"
+          >
+            Checklist<span style={{ color: "red" }}>-</span>me
+          </Link>
+          <h1 className="page-title" style={{ fontSize: "2.2em" }}>
+            Sign Out
+          </h1>
+          <h4
+            style={{
+              padding: "20px 10px",
+              textAlign: "center",
+              color: "white",
+            }}
+          >
+            ¿ Are you leaving ?
+          </h4>
           <Button
-            variant="success"
+            variant="danger"
             onClick={(e) => {
               e.preventDefault();
               handleSignOut();
             }}
           >
-            Salir
+            Yes, I'm out!
           </Button>
           <Button
-            variant="link"
+            variant="success"
             onClick={() => {
               history.goBack();
             }}
+            style={{ marginTop: "20px" }}
           >
-            Volver
+            No, take me back.
           </Button>
         </div>
+        <div className="col-md-3"></div>
       </div>
-      <div className="col-md-4"></div>
     </div>
   );
+};
+
+const styles = {
+  h1: { padding: "40px 10px" },
+  h4: { padding: "20px 0px", width: "100%" },
+  centerColumn: {
+    display: "flex",
+    flexDirection: "column",
+    alignItems: "center",
+    justifyContent: "center",
+  },
+  row: {
+    boxSizing: "border-box",
+    padding: "0px 10px",
+    margin: "0px",
+    minHeight: "80vh",
+  },
 };
 
 export default SignOut;

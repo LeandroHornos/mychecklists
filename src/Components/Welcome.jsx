@@ -11,16 +11,16 @@ const Welcome = () => {
   return (
     <div className="checklist-wall-window">
       <div className="row " style={styles.row}>
-        <div className="col-md-4"></div>
-        <div className="col-md-4" style={styles.centerColumn}>
+        <div className="col-md-3"></div>
+        <div className="col-md-6" style={styles.centerColumn}>
           <div className="d-flex flex-column justify-content-around align-items-center">
             <h2
-              style={{ color: "white", fontSize: "2em", padding: "20px 0px" }}
+              style={{ color: "white", fontSize: "3em", padding: "20px 0px" }}
             >
               Welcome to Checklist<span style={{ color: "red" }}>-</span>me
             </h2>
             <p style={{ color: "white" }}>
-              Conquer the world, one checklist at a time
+              Control the world, one checklist at a time
             </p>
 
             <Button
@@ -53,7 +53,7 @@ const Welcome = () => {
             </Button>
           </div>
         </div>
-        <div className="col-md-4"></div>
+        <div className="col-md-3"></div>
       </div>
     </div>
   );
@@ -72,7 +72,7 @@ const styles = {
     boxSizing: "border-box",
     padding: "0px 10px",
     margin: "0px",
-    minHeight: "100vh",
+    minHeight: "80vh",
   },
 };
 export default Welcome;
