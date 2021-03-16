@@ -9,6 +9,7 @@ import firebaseApp from "../firebaseApp";
 
 // React-Bootstrap
 import Button from "react-bootstrap/Button";
+import Alert from "react-bootstrap/Alert";
 
 // Components
 import NavigationBar from "./NavigationBar";
@@ -44,7 +45,7 @@ const Checklist = () => {
     const stillIncomplete = fields.some(
       (field) => field.status === "unchecked"
     );
-    if (stillIncomplete) {
+    if (stillIncomplete || fields.length === 0) {
       newStatus = "incomplete";
     }
     setChecklistStatus(newStatus);
@@ -98,6 +99,9 @@ const Checklist = () => {
                   >
                     {checklist.name}
                   </h4>
+                  <Alert variant="outline-dark" style={{ textAlign: "center" }}>
+                    Click yes or ignore on every item on the list
+                  </Alert>
                 </div>
               </div>
               <div className="row">
@@ -135,20 +139,26 @@ const Checklist = () => {
                   );
                 })}
               {checklistStatus === "complete" ? (
-                <div style={{ marginTop: "40px" }}>
+                <Alert variant="success" style={{ textAlign: "center" }}>
+                  Yay! Checklist is complete!
+                </Alert>
+              ) : (
+                <Alert variant="danger" style={{ textAlign: "center" }}>
+                  There are still some unchecked items on the list
+                </Alert>
+              )}
+              {checklistStatus === "complete" ? (
+                <div>
                   <Button block variant="success">
-                    Yay!
-                  </Button>
-                  <Button block variant="primary">
                     Save to log
                   </Button>
-                  <Button block variant="danger">
+                  <Button block variant="primary">
                     Discard
                   </Button>
                 </div>
               ) : (
                 <Button block variant="danger">
-                  Checklist is not complete yet!
+                  Discard
                 </Button>
               )}
             </div>
