@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 
 // React-bootstrap
-// import { useHistory } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 import { useParams } from "react-router";
 
 // Firebase
@@ -18,7 +18,7 @@ import CheckButtons from "./CheckButtons";
 const Checklist = () => {
   const { id } = useParams();
   // Router
-  // const history = useHistory();
+  const history = useHistory();
 
   const db = firebaseApp.firestore();
   const ref = db.collection("checklists");
@@ -140,7 +140,7 @@ const Checklist = () => {
                 })}
               {checklistStatus === "complete" ? (
                 <Alert variant="success" style={{ textAlign: "center" }}>
-                  Yay! Checklist is complete!
+                  All Checked!
                 </Alert>
               ) : (
                 <Alert variant="danger" style={{ textAlign: "center" }}>
@@ -149,10 +149,22 @@ const Checklist = () => {
               )}
               {checklistStatus === "complete" ? (
                 <div>
-                  <Button block variant="success">
+                  <Button
+                    block
+                    variant="success"
+                    onClick={() => {
+                      console.log("Taking a Snapshot.... click!:", fields);
+                    }}
+                  >
                     Save to log
                   </Button>
-                  <Button block variant="primary">
+                  <Button
+                    block
+                    variant="primary"
+                    onClick={() => {
+                      history.push("/checklists");
+                    }}
+                  >
                     Discard
                   </Button>
                 </div>
