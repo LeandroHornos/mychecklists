@@ -7,9 +7,12 @@ import { useParams } from "react-router";
 // Firebase
 import firebaseApp from "../firebaseApp";
 
+// React-Bootstrap
 import Button from "react-bootstrap/Button";
 
+// Components
 import NavigationBar from "./NavigationBar";
+import CheckButtons from "./CheckButtons";
 
 const Checklist = () => {
   const { id } = useParams();
@@ -123,7 +126,7 @@ const Checklist = () => {
                         <p>{field.name}</p>
                       </div>
                       <div className="col-4">
-                        <ChecklistButtonGroup
+                        <CheckButtons
                           field={field}
                           updateFieldStatus={updateFieldStatus}
                         />
@@ -132,9 +135,19 @@ const Checklist = () => {
                   );
                 })}
               {checklistStatus === "complete" ? (
-                <Button block variant="success" style={{ marginTop: "40px" }}>Yay!</Button>
+                <div style={{ marginTop: "40px" }}>
+                  <Button block variant="success">
+                    Yay!
+                  </Button>
+                  <Button block variant="primary">
+                    Save to log
+                  </Button>
+                  <Button block variant="danger">
+                    Discard
+                  </Button>
+                </div>
               ) : (
-                <Button block variant="danger" style={{ marginTop: "40px" }}>
+                <Button block variant="danger">
                   Checklist is not complete yet!
                 </Button>
               )}
