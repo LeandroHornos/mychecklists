@@ -6,6 +6,7 @@ import { useParams } from "react-router";
 
 // Firebase
 import firebaseApp from "../firebaseApp";
+import firebase from "firebase/app";
 
 // React-Bootstrap
 import Button from "react-bootstrap/Button";
@@ -14,6 +15,9 @@ import Alert from "react-bootstrap/Alert";
 // Components
 import NavigationBar from "./NavigationBar";
 import CheckButtons from "./CheckButtons";
+
+// Some Functions
+import Utils from "../utilities";
 
 const Checklist = () => {
   const { id } = useParams();
@@ -49,6 +53,24 @@ const Checklist = () => {
       newStatus = "incomplete";
     }
     setChecklistStatus(newStatus);
+  };
+
+  const saveSnapshotToHistory = async () => {
+    if (checklistStatus == "incomplete") return; // No guardar si no se han tildado todos los campos
+    let snapshot = { id: Utils.makeId(10), items: fields, date: Date.now() };
+
+    try {
+      await ref.doc(id).update({
+        history: firebase.firestore.FieldValue.arrayUnion(snapshot),
+      });
+      console.log("se ha añadido una snapshot al historial", snapshot);
+      history.push("/checklists");
+    } catch (error) {
+      console.log(
+        "oops, no se ha podido guardar el snapshot en el historal :(",
+        error
+      );
+    }
   };
 
   useEffect(() => {
@@ -154,6 +176,7 @@ const Checklist = () => {
                     variant="success"
                     onClick={() => {
                       console.log("Taking a Snapshot.... click!:", fields);
+                      saveSnapshotToHistory();
                     }}
                   >
                     Save to log
