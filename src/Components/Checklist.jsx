@@ -29,27 +29,27 @@ const Checklist = () => {
 
   const [checklist, setChecklist] = useState({});
   const [loading, setLoading] = useState(true);
-  const [fields, setFields] = useState([]);
+  const [items, setItems] = useState([]);
   const [checklistStatus, setChecklistStatus] = useState("incomplete");
 
-  const updateFieldStatus = (updatedFieldId, newStatus) => {
-    let updatedFields = fields.map((currentField) => {
+  const updateItemStatus = (updatedFieldId, newStatus) => {
+    let updatedItems = items.map((currentField) => {
       if (currentField.id === updatedFieldId) {
         return { ...currentField, status: newStatus };
       } else {
         return currentField;
       }
     });
-    console.log("se ha actualizado el campo:", updatedFields);
-    setFields(updatedFields);
+    console.log("se ha actualizado el campo:", updatedItems);
+    setItems(updatedItems);
   };
 
   const updateChecklistStatus = () => {
     let newStatus = "complete";
-    const stillIncomplete = fields.some(
+    const stillIncomplete = items.some(
       (field) => field.status === "unchecked"
     );
-    if (stillIncomplete || fields.length === 0) {
+    if (stillIncomplete || items.length === 0) {
       newStatus = "incomplete";
     }
     setChecklistStatus(newStatus);
@@ -57,7 +57,7 @@ const Checklist = () => {
 
   const saveSnapshotToHistory = async () => {
     if (checklistStatus == "incomplete") return; // No guardar si no se han tildado todos los campos
-    let snapshot = { id: Utils.makeId(10), items: fields, date: Date.now() };
+    let snapshot = { id: Utils.makeId(10), items: items, date: Date.now() };
 
     try {
       await ref.doc(id).update({
@@ -81,7 +81,7 @@ const Checklist = () => {
         const data = itemdoc.data();
         console.log("obtuve este resultado", data);
         setChecklist(data);
-        setFields(data.fields);
+        setItems(data.items);
         setLoading(false);
       } catch (error) {
         console.log(
@@ -97,7 +97,7 @@ const Checklist = () => {
 
   useEffect(() => {
     updateChecklistStatus();
-  }, [fields]);
+  }, [items]);
 
   return (
     <div className="checklist-wall-window">
@@ -145,7 +145,7 @@ const Checklist = () => {
                 </div>
               </div>
               {!loading &&
-                fields.map((field) => {
+                items.map((field) => {
                   return (
                     <div className="row" key={field.id}>
                       <div className="col-8">
@@ -154,7 +154,7 @@ const Checklist = () => {
                       <div className="col-4">
                         <CheckButtons
                           field={field}
-                          updateFieldStatus={updateFieldStatus}
+                          updateItemStatus={updateItemStatus}
                         />
                       </div>
                     </div>
@@ -175,7 +175,7 @@ const Checklist = () => {
                     block
                     variant="success"
                     onClick={() => {
-                      console.log("Taking a Snapshot.... click!:", fields);
+                      console.log("Taking a Snapshot.... click!:", items);
                       saveSnapshotToHistory();
                     }}
                   >
@@ -211,7 +211,7 @@ const ChecklistButtonGroup = (props) => {
       className="d-flex justify-content-between checklist-button-group"
       onChange={(e) => {
         console.log(e.target.value, "field: " + props.field.id);
-        props.updateFieldStatus(props.field.id, e.target.value);
+        props.updateItemStatus(props.field.id, e.target.value);
       }}
     >
       <input type="radio" name={`option-${props.field.id}`} value="ignored" />

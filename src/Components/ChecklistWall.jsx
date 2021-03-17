@@ -35,8 +35,8 @@ const ChecklistWall = (props) => {
 
           .where("creatorid", "==", currentUser.uid)
           .get()
-          .then((items) => {
-            const lists = items.docs.map((doc) => {
+          .then((results) => {
+            const lists = results.docs.map((doc) => {
               return { ...doc.data(), id: doc.id };
             });
             setChecklists(Utils.groupAsTriplets(lists));
@@ -83,14 +83,14 @@ const ChecklistWall = (props) => {
                       </Link>
 
                       <ul style={{ listStyle: "none" }}>
-                        {checklist.fields.map((field) => {
+                        {checklist.items.map((item) => {
                           return (
                             <li
                               key={Utils.makeId(4)}
                               style={{ fontSize: "1.3em" }}
                               className="handwritten"
                             >
-                              {field.name}
+                              {item.name}
                             </li>
                           );
                         })}

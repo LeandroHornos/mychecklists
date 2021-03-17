@@ -2,7 +2,7 @@ const ChecklistSchema = {
   date: "",
   name:"",
   creatorid:"",
-  fields: [],
+  items: [],
   history: [],
 };
 

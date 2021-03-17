@@ -26,16 +26,16 @@ const ChecklistEditor = () => {
   const history = useHistory();
 
   // State
-  const [newField, setNewField] = useState("");
+  const [newItem, setNewItem] = useState("");
   const [checklistName, setChecklistName] = useState("");
-  const [fields, setFields] = useState([]);
+  const [items, setItems] = useState([]);
 
   //Methods
   const saveChecklist = async () => {
     let checklist = ChecklistSchema;
     checklist = {
       ...checklist,
-      fields,
+      items,
       date: new Date(),
       creatorid: currentUser.uid,
       name: checklistName,
@@ -49,19 +49,21 @@ const ChecklistEditor = () => {
     }
   };
 
-  const addFieldToChecklist = () => {
-    const newFields = [
-      ...fields,
-      { name: newField, status: "unchecked", id: Utils.makeId(8) },
+  const addItemToChecklist = () => {
+    const newItems = [
+      ...items,
+      { name: newItem, status: "unchecked", id: Utils.makeId(8) },
     ];
-    setFields(newFields);
-    setNewField("");
-    console.log(newFields);
+    setItems(newItems);
+    setNewItem("");
+    console.log(newItems);
   };
 
   const clearChecklist = () => {
-    setFields([]);
+    setItems([]);
   };
+
+  // Render
   return (
     <React.Fragment>
       <NavigationBar />
@@ -102,16 +104,16 @@ const ChecklistEditor = () => {
                   placeholder="Add the name of an item to add on the list"
                   aria-label="Nombre del item"
                   aria-describedby="basic-addon2"
-                  value={newField}
+                  value={newItem}
                   onChange={(e) => {
-                    setNewField(e.target.value);
+                    setNewItem(e.target.value);
                   }}
                 />
                 <InputGroup.Append>
                   <Button
                     variant="outline-success"
                     onClick={() => {
-                      addFieldToChecklist();
+                      addItemToChecklist();
                     }}
                   >
                     +
@@ -128,8 +130,8 @@ const ChecklistEditor = () => {
               This items are currently in this checklist:
             </h4>
             <ul style={styles.itemsList}>
-              {fields.length === 0 && <p>There are no items yet</p>}
-              {fields.map((field) => {
+              {items.length === 0 && <p>There are no items yet</p>}
+              {items.map((field) => {
                 return (
                   <div
                     key={field.id}
