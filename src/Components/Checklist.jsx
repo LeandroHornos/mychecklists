@@ -47,7 +47,7 @@ const Checklist = () => {
   const updateChecklistStatus = () => {
     let newStatus = "complete";
     const stillIncomplete = items.some(
-      (field) => field.status === "unchecked"
+      (item) => item.status === "unchecked"
     );
     if (stillIncomplete || items.length === 0) {
       newStatus = "incomplete";
@@ -145,15 +145,15 @@ const Checklist = () => {
                 </div>
               </div>
               {!loading &&
-                items.map((field) => {
+                items.map((item) => {
                   return (
-                    <div className="row" key={field.id}>
+                    <div className="row" key={item.id}>
                       <div className="col-8">
-                        <p>{field.name}</p>
+                        <p>{item.name}</p>
                       </div>
                       <div className="col-4">
                         <CheckButtons
-                          field={field}
+                          item={item}
                           updateItemStatus={updateItemStatus}
                         />
                       </div>
@@ -210,15 +210,15 @@ const ChecklistButtonGroup = (props) => {
     <div
       className="d-flex justify-content-between checklist-button-group"
       onChange={(e) => {
-        console.log(e.target.value, "field: " + props.field.id);
-        props.updateItemStatus(props.field.id, e.target.value);
+        console.log(e.target.value, "item: " + props.item.id);
+        props.updateItemStatus(props.item.id, e.target.value);
       }}
     >
-      <input type="radio" name={`option-${props.field.id}`} value="ignored" />
-      <input type="radio" name={`option-${props.field.id}`} value="checked" />
+      <input type="radio" name={`option-${props.item.id}`} value="ignored" />
+      <input type="radio" name={`option-${props.item.id}`} value="checked" />
       <input
         type="radio"
-        name={`option-${props.field.id}`}
+        name={`option-${props.item.id}`}
         value="unchecked"
         defaultChecked
       />
