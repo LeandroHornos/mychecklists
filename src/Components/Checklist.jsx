@@ -46,9 +46,7 @@ const Checklist = () => {
 
   const updateChecklistStatus = () => {
     let newStatus = "complete";
-    const stillIncomplete = items.some(
-      (item) => item.status === "unchecked"
-    );
+    const stillIncomplete = items.some((item) => item.status === "unchecked");
     if (stillIncomplete || items.length === 0) {
       newStatus = "incomplete";
     }
@@ -57,7 +55,7 @@ const Checklist = () => {
 
   const saveSnapshotToHistory = async () => {
     if (checklistStatus == "incomplete") return; // No guardar si no se han tildado todos los campos
-    let snapshot = { id: Utils.makeId(10), items: items, date: Date.now() };
+    let snapshot = { id: Utils.makeId(10), items: items, date: new Date() };
 
     try {
       await ref.doc(id).update({
@@ -149,7 +147,19 @@ const Checklist = () => {
                   return (
                     <div className="row" key={item.id}>
                       <div className="col-8">
-                        <p>{item.name}</p>
+                        <p
+                          style={
+                            item.status === "ignored"
+                              ? {
+                                  color: "red",
+                                  textDecoration: "line-through",
+                                  opacity: "0.3",
+                                }
+                              : {}
+                          }
+                        >
+                          {item.name}
+                        </p>
                       </div>
                       <div className="col-4">
                         <CheckButtons
@@ -201,6 +211,13 @@ const Checklist = () => {
         </div>
         <div className="col-lg-3 col-md-2"></div>
       </div>
+      <div className="row">
+        <div className="col-md-2"></div>
+        <div className="col-md-8">
+          {!loading && <ChecklistHistoryViewer history={checklist.history} />}
+        </div>
+        <div className="col-md-2"></div>
+      </div>
     </div>
   );
 };
@@ -223,6 +240,83 @@ const ChecklistButtonGroup = (props) => {
         defaultChecked
       />
     </div>
+  );
+};
+
+const ChecklistHistoryViewer = (props) => {
+  const [snapshots, setSnapshots] = useState([]);
+
+  const formatDate = (date) => {
+    console.log("Recibi esta fecha:", date);
+    let formattedDate = date.toDate();
+    return formattedDate.toLocaleString();
+  };
+
+  useEffect(() => {
+    console.log("Seteando historial", props.history);
+    setSnapshots(Utils.groupAsTriplets(props.history));
+  }, [props]);
+  return (
+    <React.Fragment>
+      <div>
+        <h1 style={{ color: "white", padding: "20px" }}>History</h1>
+        <div>
+          {snapshots.map((triplet) => {
+            return (
+              <div
+                className="row"
+                key={triplet[0].id}
+                style={{ ...styles.row, color: "white" }}
+              >
+                {triplet.map((snap) => {
+                  return (
+                    <div className="col-md-4" key={snap.id}>
+                      <div className="d-flex flex-column">
+                        <h4>Date: {formatDate(snap.date)}</h4>
+                        <ul style={{ padding: "20px" }}>
+                          {snap.items.map((item) => {
+                            return (
+                              <li key={item.id}>
+                                <span
+                                  style={
+                                    item.status === "ignored"
+                                      ? {
+                                          color: "white",
+                                          textDecoration: "line-through",
+                                          opacity: "0.4",
+                                        }
+                                      : {}
+                                  }
+                                >
+                                  {item.name}
+                                </span>
+                                :{" "}
+                                <span
+                                  style={
+                                    item.status === "ignored"
+                                      ? {
+                                          color: "red",
+                                          opacity: "0.4",
+                                        }
+                                      : { color: "rgb(150,255,150)" }
+                                  }
+                                >
+                                  {item.status}
+                                </span>
+                              </li>
+                            );
+                          })}
+                        </ul>
+                      </div>
+                    </div>
+                  );
+                })}
+              </div>
+            );
+          })}
+        </div>
+      </div>
+    </React.Fragment>
   );
 };
 
