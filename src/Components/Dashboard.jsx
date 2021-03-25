@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext } from "react";
 
 // React-bootstrap
 import Button from "react-bootstrap/Button";
@@ -6,9 +6,15 @@ import Button from "react-bootstrap/Button";
 import NavigationBar from "./NavigationBar";
 import { useHistory } from "react-router-dom";
 
+import { LanguageContext } from "../Lang";
+
 const Dashboard = () => {
   // Router
   const history = useHistory();
+  const { dictionary } = useContext(LanguageContext);
+  const txt = dictionary.components.Dashboard;
+  // const gtxt = dictionary.components.General
+
   return (
     <div className="checklist-wall-window">
       <NavigationBar />
@@ -19,7 +25,8 @@ const Dashboard = () => {
             <h4
               style={{ color: "white", fontSize: "1.8em", padding: "20px 0px" }}
             >
-              What would you like to do?
+              {/* What would you like to do? */}
+              {txt.whatToDo}
             </h4>
 
             <Button
@@ -34,7 +41,7 @@ const Dashboard = () => {
                 margin: "10px 0px",
               }}
             >
-              View My Checklists
+              {txt.viewMyChecklists}
             </Button>
             <Button
               onClick={() => {
@@ -48,8 +55,7 @@ const Dashboard = () => {
                 margin: "10px 0px",
               }}
             >
-              {" "}
-              New Checklist
+              {txt.makeNewChecklist}
             </Button>
           </div>
         </div>

@@ -1,0 +1,16 @@
+{
+  "components": {
+    "Dashboard": {
+      "hello": "Hello",
+      "whatToDo": "What would you like to do?",
+      "viewMyChecklists": "View my checklists",
+      "makeNewChecklist": "Make a new checklist"
+    },
+    "NavigationBar": { "explore":"Explore","new": "New" }
+  },
+  "general": {
+    "hello": "Hello",
+    "home":"Home",
+    "signOut": "Sign Out"
+  }
+}
