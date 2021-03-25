@@ -211,7 +211,7 @@ const Checklist = () => {
         </div>
         <div className="col-lg-3 col-md-2"></div>
       </div>
-      <div className="row">
+      <div className="row" style={styles.row}>
         <div className="col-md-2"></div>
         <div className="col-md-8">
           {!loading && <ChecklistHistoryViewer history={checklist.history} />}
