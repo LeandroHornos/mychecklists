@@ -7,6 +7,8 @@ import { AuthContext } from "../Auth";
 import firebaseApp from "../firebaseApp";
 import ChecklistSchema from "../Models/ChecklistSchema";
 
+import { LanguageContext } from "../Lang";
+
 import "../index.css";
 
 // React-bootstrap
@@ -22,6 +24,9 @@ import NavigationBar from "./NavigationBar";
 
 const ChecklistEditor = () => {
   const { currentUser } = useContext(AuthContext);
+  const { dictionary } = useContext(LanguageContext);
+  const txt = dictionary.components.ChecklistEditor;
+  const gtxt = dictionary.general;
   const db = firebaseApp.firestore();
   const history = useHistory();
 
@@ -69,9 +74,7 @@ const ChecklistEditor = () => {
       <NavigationBar />
       <div className="row fabric-background" style={styles.row}>
         <div className="col-12">
-          <h1 className="page-title">
-            Create a new checklist or edit an existing one:
-          </h1>
+          <h1 className="page-title">{txt.title}</h1>
         </div>
       </div>
       <div
@@ -81,10 +84,10 @@ const ChecklistEditor = () => {
         <div className="col-md-4">
           <div className="d-flex flex-column my-checklist">
             <div className="block-container">
-              <h4 className="block-title">Checklist Name:</h4>
+              <h4 className="block-title">{txt.checklistName}:</h4>
               <InputGroup className="mb-3">
                 <FormControl
-                  placeholder="Choose a name for the new checklist"
+                  placeholder={txt.chklstNamePlaceholder}
                   aria-label="Checklist name"
                   aria-describedby="basic-addon2"
                   value={checklistName}
@@ -96,12 +99,10 @@ const ChecklistEditor = () => {
             </div>
 
             <div className="block-container">
-              <h4 className="block-title handwritten">
-                Add this item to the list:
-              </h4>
+              <h4 className="block-title handwritten">{txt.addItem}</h4>
               <InputGroup className="mb-3">
                 <FormControl
-                  placeholder="Add the name of an item to add on the list"
+                  placeholder={txt.addItemPlaceholder}
                   aria-label="Nombre del item"
                   aria-describedby="basic-addon2"
                   value={newItem}
@@ -125,21 +126,24 @@ const ChecklistEditor = () => {
         </div>
         <div className="col-md-4">
           {" "}
-          <div className="block-container">
+          <div
+            className="block-container text-center"
+            style={{ maxHeight: "90vh", overflowY: "auto" }}
+          >
             <h4 className="block-title">
-              This items are currently in this checklist:
+              {checklistName !== "" ? checklistName : txt.chklstPreview}
             </h4>
-            <ul style={styles.itemsList}>
-              {items.length === 0 && <p>There are no items yet</p>}
+            {items.length === 0 && <p>{txt.noItemsYet}</p>}
+            <ul>
               {items.map((field) => {
                 return (
-                  <div
-                    key={field.id}
-                    className="checklist-editor-row d-flex justify-content-between align-items-center"
-                  >
-                    <label>{field.name}</label>
-                    <Button variant="outline-danger">x</Button>
-                  </div>
+                  <li key={field.id} className="d-flex justify-content-between">
+                    <span style={{ padding: "10px" }}>{field.name}</span>
+                    <span>
+                      <Button variant="link">{gtxt.edit}</Button>
+                      <Button variant="link">{gtxt.delete}</Button>
+                    </span>
+                  </li>
                 );
               })}
             </ul>
@@ -147,8 +151,11 @@ const ChecklistEditor = () => {
         </div>
         <div className="col-md-4">
           {" "}
-          <div className="d-flex flex-column justify-content-between align-items-center block-container">
-            <h4 className="block-title">Do this with my checklist:</h4>
+          <div
+            className="d-flex flex-column justify-content-start align-items-center block-container"
+            style={{ minHeight: "60vh" }}
+          >
+            <h4 className="block-title">{txt.doThis}:</h4>
             <Button
               onClick={() => {
                 saveChecklist();
@@ -156,7 +163,7 @@ const ChecklistEditor = () => {
               block
               variant="outline-success"
             >
-              Save
+              {gtxt.save}
             </Button>
             <Button
               onClick={() => {
@@ -165,10 +172,10 @@ const ChecklistEditor = () => {
               block
               variant="outline-info"
             >
-              Clear
+              {gtxt.clear}
             </Button>
             <Button block variant="outline-danger" disabled>
-              Delete
+              {gtxt.delete}
             </Button>
           </div>
         </div>

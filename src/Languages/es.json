@@ -6,11 +6,26 @@
       "viewMyChecklists": "Ver mis checklists",
       "makeNewChecklist": "Crear una nueva checklist"
     },
-    "NavigationBar": { "explore":"Explora","new": "Nueva" }
+    "ChecklistEditor": {
+      "addItem": "Agregar este elemento a la lista:",
+      "addItemPlaceholder": "Elije un nombre para el elemento",
+      "checklistName": "Nombre de la checklist",
+      "chklstNamePlaceholder": "Elije un nombre que la identifique",
+      "chklstPreview": "Checklist Preview",
+      "doThis": "Haz esto con la checklist",
+      "itemsInChecklist": "Estos elementos se encuentran actualmente en la lista",
+      "noItemsYet": "La lista está vacía",
+      "title": "Crea una nueva checklist"
+    },
+    "NavigationBar": { "explore": "Explora", "new": "Nueva" }
   },
   "general": {
+    "clear": "Limpiar",
+    "delete": "Borrar",
+    "edit": "Editar",
     "hello": "Hola",
-    "home":"Inicio",
+    "home": "Inicio",
+    "save": "Guardar",
     "signOut": "Salir"
   }
 }
