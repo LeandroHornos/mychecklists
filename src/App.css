@@ -39,9 +39,6 @@
   background: rgb(20, 172, 172);
 }
 
-::-webkit-scrollbar-button {
-  width: "10px";
-}
 
 .page-title {
   color: rgba(242, 242, 242, 0.55);

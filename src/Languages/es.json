@@ -6,6 +6,15 @@
       "viewMyChecklists": "Ver mis checklists",
       "makeNewChecklist": "Crear una nueva checklist"
     },
+    "Checklist": {
+      "checked":"Chequeado",
+      "ignored":"Ignorado",
+      "explanation": "Selecciona Si o Ignorar en cada elemento de la lista",
+      "listNotReadyMsg": " Todavía hay elementos sin chequear",
+      "listReadyMsg": "Todo chequeado!",
+      "saveToHistory": "Guardar instantánea en el historial",
+      "title": "Vamos a chequear esto!"
+    },
     "ChecklistEditor": {
       "addItem": "Agregar este elemento a la lista:",
       "addItemPlaceholder": "Elije un nombre para el elemento",
@@ -21,11 +30,18 @@
   },
   "general": {
     "clear": "Limpiar",
+    "date": "Fecha",
     "delete": "Borrar",
+    "discard": "Descartar",
     "edit": "Editar",
     "hello": "Hola",
+    "history": "Historial",
     "home": "Inicio",
+    "ignore": "Ignorar",
+    "item": "Elemento",
+    "no": "No",
     "save": "Guardar",
-    "signOut": "Salir"
+    "signOut": "Salir",
+    "yes": "Si"
   }
 }

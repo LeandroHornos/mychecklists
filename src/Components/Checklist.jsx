@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useContext } from "react";
 
 // React-bootstrap
 import { useHistory } from "react-router-dom";
@@ -7,6 +7,9 @@ import { useParams } from "react-router";
 // Firebase
 import firebaseApp from "../firebaseApp";
 import firebase from "firebase/app";
+
+// Language
+import { LanguageContext } from "../Lang";
 
 // React-Bootstrap
 import Button from "react-bootstrap/Button";
@@ -20,17 +23,25 @@ import CheckButtons from "./CheckButtons";
 import Utils from "../utilities";
 
 const Checklist = () => {
+  // Url Params
   const { id } = useParams();
   // Router
   const history = useHistory();
-
+  // Firestore
   const db = firebaseApp.firestore();
   const ref = db.collection("checklists");
+  // Language
+  const { dictionary } = useContext(LanguageContext);
+  const txt = dictionary.components.Checklist;
+  const gtxt = dictionary.general;
 
+  // State
   const [checklist, setChecklist] = useState({});
   const [loading, setLoading] = useState(true);
   const [items, setItems] = useState([]);
   const [checklistStatus, setChecklistStatus] = useState("incomplete");
+
+  // Methods
 
   const updateItemStatus = (updatedFieldId, newStatus) => {
     let updatedItems = items.map((currentField) => {
@@ -71,7 +82,10 @@ const Checklist = () => {
     }
   };
 
+  // Effects
+
   useEffect(() => {
+    // Obtener Checklist de la base de datos
     const fetchData = async () => {
       try {
         console.log("Deseo ver la checklist con este id:", id);
@@ -94,6 +108,7 @@ const Checklist = () => {
   }, []);
 
   useEffect(() => {
+    // Volver a evaluar el estatus de la lista (completa/incompleta) cuando hay cambios en un item
     updateChecklistStatus();
   }, [items]);
 
@@ -102,7 +117,7 @@ const Checklist = () => {
       <NavigationBar />
       <div className="row fabric-background" style={styles.row}>
         <div className="col-12">
-          <h1 className="page-title">Lets check this!</h1>
+          <h1 className="page-title">{txt.title}</h1>
         </div>
       </div>
 
@@ -120,24 +135,24 @@ const Checklist = () => {
                     {checklist.name}
                   </h4>
                   <Alert variant="outline-dark" style={{ textAlign: "center" }}>
-                    Click yes or ignore on every item on the list
+                    {txt.explanation}
                   </Alert>
                 </div>
               </div>
               <div className="row">
                 <div className="col-8">
-                  <h4 className="block-title">Item:</h4>
+                  <h4 className="block-title">{gtxt.item}:</h4>
                 </div>
                 <div className="col-4">
                   <div className="d-flex justify-content-between">
                     <span style={{ textAlign: "center", color: "grey" }}>
-                      ignore
+                      {gtxt.ignore}
                     </span>
                     <span style={{ textAlign: "center", color: "green" }}>
-                      yes
+                      {gtxt.yes}
                     </span>
                     <span style={{ textAlign: "center", color: "red" }}>
-                      no
+                      {gtxt.no}
                     </span>
                   </div>
                 </div>
@@ -172,11 +187,11 @@ const Checklist = () => {
                 })}
               {checklistStatus === "complete" ? (
                 <Alert variant="success" style={{ textAlign: "center" }}>
-                  All Checked!
+                  {txt.listReadyMsg}
                 </Alert>
               ) : (
                 <Alert variant="danger" style={{ textAlign: "center" }}>
-                  There are still some unchecked items on the list
+                  {txt.listNotReadyMsg}
                 </Alert>
               )}
               {checklistStatus === "complete" ? (
@@ -189,7 +204,7 @@ const Checklist = () => {
                       saveSnapshotToHistory();
                     }}
                   >
-                    Save to log
+                    {txt.saveToHistory}
                   </Button>
                   <Button
                     block
@@ -198,12 +213,12 @@ const Checklist = () => {
                       history.push("/checklists");
                     }}
                   >
-                    Discard
+                    {gtxt.discard}
                   </Button>
                 </div>
               ) : (
                 <Button block variant="danger">
-                  Discard
+                  {gtxt.discard}
                 </Button>
               )}
             </div>
@@ -214,7 +229,12 @@ const Checklist = () => {
       <div className="row" style={styles.row}>
         <div className="col-md-2"></div>
         <div className="col-md-8">
-          {!loading && <ChecklistHistoryViewer history={checklist.history} />}
+          {!loading && (
+            <ChecklistHistoryViewer
+              history={checklist.history}
+              dictionary={{ txt, gtxt }}
+            />
+          )}
         </div>
         <div className="col-md-2"></div>
       </div>
@@ -223,6 +243,8 @@ const Checklist = () => {
 };
 
 const ChecklistButtonGroup = (props) => {
+  const { txt } = props.dictionary;
+  // Language
   return (
     <div
       className="d-flex justify-content-between checklist-button-group"
@@ -245,6 +267,7 @@ const ChecklistButtonGroup = (props) => {
 
 const ChecklistHistoryViewer = (props) => {
   const [snapshots, setSnapshots] = useState([]);
+  const { gtxt, txt } = props.dictionary;
 
   const formatDate = (date) => {
     console.log("Recibi esta fecha:", date);
@@ -259,7 +282,7 @@ const ChecklistHistoryViewer = (props) => {
   return (
     <React.Fragment>
       <div>
-        <h1 style={{ color: "white", padding: "20px" }}>History</h1>
+        <h1 style={{ color: "white", padding: "20px" }}>{gtxt.history}</h1>
         <div>
           {snapshots.map((triplet) => {
             return (
@@ -272,7 +295,9 @@ const ChecklistHistoryViewer = (props) => {
                   return (
                     <div className="col-md-4" key={snap.id}>
                       <div className="d-flex flex-column">
-                        <h4>Date: {formatDate(snap.date)}</h4>
+                        <h4>
+                          {gtxt.date}: {formatDate(snap.date)}
+                        </h4>
                         <ul style={{ padding: "20px" }}>
                           {snap.items.map((item) => {
                             return (
@@ -288,9 +313,8 @@ const ChecklistHistoryViewer = (props) => {
                                       : {}
                                   }
                                 >
-                                  {item.name}
+                                  {item.name}:{" "}
                                 </span>
-                                :{" "}
                                 <span
                                   style={
                                     item.status === "ignored"
@@ -301,7 +325,7 @@ const ChecklistHistoryViewer = (props) => {
                                       : { color: "rgb(150,255,150)" }
                                   }
                                 >
-                                  {item.status}
+                                  {txt[item.status]}
                                 </span>
                               </li>
                             );
