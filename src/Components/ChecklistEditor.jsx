@@ -16,6 +16,8 @@ import Button from "react-bootstrap/Button";
 import InputGroup from "react-bootstrap/InputGroup";
 import FormControl from "react-bootstrap/FormControl";
 
+import Pin from "./Subcomponents/Pin";
+
 import Utils from "../utilities";
 
 // Components
@@ -130,6 +132,7 @@ const ChecklistEditor = () => {
             className="block-container text-center"
             style={{ maxHeight: "90vh", overflowY: "auto" }}
           >
+            <Pin />
             <h4 className="block-title">
               {checklistName !== "" ? checklistName : txt.chklstPreview}
             </h4>

@@ -18,6 +18,7 @@ import Alert from "react-bootstrap/Alert";
 // Components
 import NavigationBar from "./NavigationBar";
 import CheckButtons from "./CheckButtons";
+import Pin from "./Subcomponents/Pin";
 
 // Some Functions
 import Utils from "../utilities";
@@ -128,6 +129,7 @@ const Checklist = () => {
             <div style={{ width: "100%", padding: "10px" }}>
               <div className="row">
                 <div className="col-12">
+                  <Pin />
                   <h4
                     className="block-title"
                     style={{ textAlign: "center", fontSize: "2em" }}

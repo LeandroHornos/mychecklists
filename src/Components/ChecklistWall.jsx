@@ -11,6 +11,7 @@ import { Link } from "react-router-dom";
 // Components
 
 import NavigationBar from "./NavigationBar";
+import Pin from "./Subcomponents/Pin";
 
 const ChecklistWall = (props) => {
   // const triplets = Utils.groupAsTriplets(props.data);
@@ -73,6 +74,7 @@ const ChecklistWall = (props) => {
                 return (
                   <div key={Utils.makeId(4)} className="col-md-4">
                     <div className="checklist-card">
+                      <Pin />
                       <Link to={"/view/" + checklist.id}>
                         <h4
                           className="handwritten checklist-card-title"
