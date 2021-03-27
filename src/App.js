@@ -15,7 +15,7 @@ import ChecklistWall from "./Components/ChecklistWall";
 import Register from "./Components/Register";
 import Login from "./Components/Login";
 import SignOut from "./Components/SignOut";
-import Welcome from "./Components/Welcome";
+import LandingPage from "./Components/LandingPage";
 
 import "./App.css";
 
@@ -27,7 +27,10 @@ function App() {
       <div style={{ boxSizing: "border-box" }}>
         <Switch>
           <Route exact path="/">
-            {currentUser ? <Dashboard /> : <Welcome />}
+            <LandingPage />
+          </Route>
+          <Route exact path="/home">
+            <Dashboard />
           </Route>
           <Route exact path="/edit">
             <ChecklistEditor />

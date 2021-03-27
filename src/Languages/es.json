@@ -7,8 +7,8 @@
       "makeNewChecklist": "Crear una nueva checklist"
     },
     "Checklist": {
-      "checked":"Chequeado",
-      "ignored":"Ignorado",
+      "checked": "Chequeado",
+      "ignored": "Ignorado",
       "explanation": "Selecciona Si o Ignorar en cada elemento de la lista",
       "listNotReadyMsg": " Todavía hay elementos sin chequear",
       "listReadyMsg": "Todo chequeado!",
@@ -26,7 +26,13 @@
       "noItemsYet": "La lista está vacía",
       "title": "Crea una nueva checklist"
     },
-    "NavigationBar": { "explore": "Explora", "new": "Nueva" }
+    "NavigationBar": { "explore": "Explora", "new": "Nueva" },
+    "LandingPage": {
+      "createAccount": "Crear una cuenta",
+      "login": "Acceder",
+      "slogan": "Controla el mundo, una checklist a la vez",
+      "welcomeTo": "Te damos la bienvenida a"
+    }
   },
   "general": {
     "clear": "Limpiar",

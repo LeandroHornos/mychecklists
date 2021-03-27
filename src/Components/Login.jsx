@@ -16,7 +16,7 @@ function Login() {
   const handleSignIn = async () => {
     try {
       await firebaseApp.auth().signInWithEmailAndPassword(email, password);
-      history.push("./");
+      history.push("/home");
       console.log("usuario logueado");
     } catch (error) {
       console.log(error);

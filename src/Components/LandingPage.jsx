@@ -1,11 +1,17 @@
-import React from "react";
+import React, { useContext } from "react";
+
+// Language
+import { LanguageContext } from "../Lang";
 
 // React-bootstrap
 import Button from "react-bootstrap/Button";
 
 import { useHistory } from "react-router-dom";
 
-const Welcome = () => {
+const LandingPage = () => {
+  const { dictionary } = useContext(LanguageContext);
+  const txt = dictionary.components.LandingPage;
+  const gtxt = dictionary.general;
   // Router
   const history = useHistory();
   return (
@@ -14,14 +20,13 @@ const Welcome = () => {
         <div className="col-md-3"></div>
         <div className="col-md-6" style={styles.centerColumn}>
           <div className="d-flex flex-column justify-content-around align-items-center">
+            <h4>{txt.welcomeTo}</h4>
             <h2
               style={{ color: "white", fontSize: "3em", padding: "20px 0px" }}
             >
-              Welcome to Checklist<span style={{ color: "red" }}>-</span>me
+              Checklist<span style={{ color: "red" }}>-</span>me
             </h2>
-            <p style={{ color: "white" }}>
-              Control the world, one checklist at a time
-            </p>
+            <p style={{ color: "white" }}>{txt.slogan}</p>
 
             <Button
               onClick={() => {
@@ -35,7 +40,7 @@ const Welcome = () => {
                 margin: "10px 0px",
               }}
             >
-              Login
+              {txt.login}
             </Button>
             <Button
               onClick={() => {
@@ -49,7 +54,7 @@ const Welcome = () => {
                 margin: "10px 0px",
               }}
             >
-              Create new account
+              {txt.createAccount}
             </Button>
           </div>
         </div>
@@ -75,4 +80,4 @@ const styles = {
     minHeight: "80vh",
   },
 };
-export default Welcome;
+export default LandingPage;

@@ -7,8 +7,8 @@
       "makeNewChecklist": "Make a new checklist"
     },
     "Checklist": {
-      "checked":"Checked",
-      "ignored":"Ignored",
+      "checked": "Checked",
+      "ignored": "Ignored",
       "explanation": "Click yes or ignore on every item on the list",
       "listNotReadyMsg": " There are still some unchecked items on the list",
       "listReadyMsg": "All Checked!",
@@ -26,7 +26,13 @@
       "noItemsYet": "List is empty",
       "title": "Create a new checklist"
     },
-    "NavigationBar": { "explore": "Explore", "new": "New" }
+    "NavigationBar": { "explore": "Explore", "new": "New" },
+    "LandingPage": {
+      "createAccount": "Create a new account",
+      "login": "Sign In",
+      "slogan":"Control the world, one checklist at a time",
+      "welcomeTo": "Welcome to"
+    }
   },
   "general": {
     "clear": "Clear",
@@ -37,9 +43,9 @@
     "hello": "Hello",
     "history": "History",
     "home": "Home",
-    "ignore":"Ignore",
+    "ignore": "Ignore",
     "item": "Item",
-    "no":"No",
+    "no": "No",
     "save": "Save",
     "signOut": "Sign Out",
     "yes": "Yes"
