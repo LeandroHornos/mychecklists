@@ -11,15 +11,17 @@ import Button from "react-bootstrap/Button";
 
 import { useHistory } from "react-router-dom";
 
+import BasicNavBar from "./BasicNavBar";
+
 const LandingPage = () => {
   const { currentUser } = useContext(AuthContext);
   const { dictionary } = useContext(LanguageContext);
   const txt = dictionary.components.LandingPage;
-  const gtxt = dictionary.general;
   // Router
   const history = useHistory();
   return (
     <div className="checklist-wall-window">
+      <BasicNavBar />
       <div className="row " style={styles.row}>
         <div className="col-md-3"></div>
         <div className="col-md-6" style={styles.centerColumn}>

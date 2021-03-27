@@ -26,11 +26,12 @@
       "noItemsYet": "List is empty",
       "title": "Create a new checklist"
     },
+    "Login": { "noAccount": "I don't have an account yet" },
     "NavigationBar": { "explore": "Explore", "new": "New" },
     "LandingPage": {
       "createAccount": "Create a new account",
-      "login": "Sign In",
-      "slogan":"Control the world, one checklist at a time",
+      "login": "Enter",
+      "slogan": "Control the world, one checklist at a time",
       "welcomeTo": "Welcome to"
     }
   },
@@ -40,12 +41,16 @@
     "delete": "Delete",
     "discard": "Discard",
     "edit": "Edit",
+    "email": "Email",
     "hello": "Hello",
     "history": "History",
     "home": "Home",
     "ignore": "Ignore",
     "item": "Item",
+    "login": "Log in",
     "no": "No",
+    "password": "Password",
+    "register":"Sign Up",
     "save": "Save",
     "signOut": "Sign Out",
     "yes": "Yes"

@@ -26,13 +26,15 @@
       "noItemsYet": "La lista está vacía",
       "title": "Crea una nueva checklist"
     },
-    "NavigationBar": { "explore": "Explora", "new": "Nueva" },
+
     "LandingPage": {
       "createAccount": "Crear una cuenta",
       "login": "Acceder",
       "slogan": "Controla el mundo, una checklist a la vez",
       "welcomeTo": "Te damos la bienvenida a"
-    }
+    },
+    "Login": { "noAccount": "Aún no tengo una cuenta" },
+    "NavigationBar": { "explore": "Explora", "new": "Nueva" }
   },
   "general": {
     "clear": "Limpiar",
@@ -40,12 +42,16 @@
     "delete": "Borrar",
     "discard": "Descartar",
     "edit": "Editar",
+    "email": "Correo electrónico",
     "hello": "Hola",
     "history": "Historial",
     "home": "Inicio",
     "ignore": "Ignorar",
     "item": "Elemento",
+    "login": "Acceder",
     "no": "No",
+    "password": "Contraseña",
+    "register": "Registrarme",
     "save": "Guardar",
     "signOut": "Salir",
     "yes": "Si"

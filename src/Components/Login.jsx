@@ -1,15 +1,24 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 
 import { useHistory, Link } from "react-router-dom";
 
 // Firebase
 import firebaseApp from "../firebaseApp";
+// import { AuthContext } from "../Auth";
+
+// Language
+import { LanguageContext } from "../Lang";
 
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 
+import BasicNavBar from "./BasicNavBar";
+
 function Login() {
-  
+  const { dictionary } = useContext(LanguageContext);
+  const txt = dictionary.components.Login;
+  const gtxt = dictionary.general;
+
   const history = useHistory();
   const [email, setEmail] = useState(null);
   const [password, setPassword] = useState(null);
@@ -26,6 +35,7 @@ function Login() {
 
   return (
     <div className="checklist-wall-window">
+      <BasicNavBar />
       <div className="row" style={styles.row}>
         <div className="col-md-3"></div>
         <div
@@ -43,11 +53,11 @@ function Login() {
             Checklist<span style={{ color: "red" }}>-</span>me
           </Link>
           <h1 className="page-title" style={{ fontSize: "2.2em" }}>
-            Sign In
+            {gtxt.login}
           </h1>
           <Form>
             <Form.Group controlId="formBasicEmail">
-              <Form.Label style={{ color: "white" }}>Email</Form.Label>
+              <Form.Label style={{ color: "white" }}>{gtxt.email}</Form.Label>
               <Form.Control
                 type="email"
                 placeholder="Enter email"
@@ -58,7 +68,9 @@ function Login() {
             </Form.Group>
 
             <Form.Group controlId="formBasicPassword">
-              <Form.Label style={{ color: "white" }}>Password</Form.Label>
+              <Form.Label style={{ color: "white" }}>
+                {gtxt.password}
+              </Form.Label>
               <Form.Control
                 type="password"
                 placeholder="Password"
@@ -76,7 +88,7 @@ function Login() {
                 handleSignIn();
               }}
             >
-              Enter
+              {gtxt.login}
             </Button>
             <Button
               block
@@ -86,7 +98,7 @@ function Login() {
               }}
               style={{ color: "white" }}
             >
-              I don't have an account
+              {txt.noAccount}
             </Button>
           </Form>
         </div>
