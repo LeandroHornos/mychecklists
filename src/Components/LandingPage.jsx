@@ -3,12 +3,16 @@ import React, { useContext } from "react";
 // Language
 import { LanguageContext } from "../Lang";
 
+/* Firebase */
+import { AuthContext } from "../Auth";
+
 // React-bootstrap
 import Button from "react-bootstrap/Button";
 
 import { useHistory } from "react-router-dom";
 
 const LandingPage = () => {
+  const { currentUser } = useContext(AuthContext);
   const { dictionary } = useContext(LanguageContext);
   const txt = dictionary.components.LandingPage;
   const gtxt = dictionary.general;
@@ -30,7 +34,7 @@ const LandingPage = () => {
 
             <Button
               onClick={() => {
-                history.push("/login");
+                currentUser ? history.push("/home") : history.push("/login");
               }}
               block
               variant="outline-success"
@@ -44,7 +48,7 @@ const LandingPage = () => {
             </Button>
             <Button
               onClick={() => {
-                history.push("/register");
+                currentUser ? history.push("/home") : history.push("/register");
               }}
               block
               variant="outline-success"
