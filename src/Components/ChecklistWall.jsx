@@ -8,22 +8,23 @@ import { AuthContext } from "../Auth";
 // Router
 import { Link } from "react-router-dom";
 
+// Language
+import { LanguageContext } from "../Lang";
+
 // Components
 
 import NavigationBar from "./NavigationBar";
 import Pin from "./Subcomponents/Pin";
 
 const ChecklistWall = (props) => {
-  // const triplets = Utils.groupAsTriplets(props.data);
-
+  // Firestore db
   const db = firebaseApp.firestore();
   const ref = db.collection("checklists");
-
   // Auth:
   const { currentUser } = useContext(AuthContext);
-
-  // Router
-
+  //Lang
+  const { dictionary } = useContext(LanguageContext);
+  const txt = dictionary.components.ChecklistWall;
   // State:
   const [checklists, setChecklists] = useState([]);
   // const [loading, setLoading] = useState(true);
@@ -59,7 +60,7 @@ const ChecklistWall = (props) => {
       <NavigationBar />
       <div className="row fabric-background" style={{ margin: "0px" }}>
         <div className="col-12">
-          <h1 className="page-title">This are all your checklists:</h1>
+          <h1 className="page-title">{txt.title}</h1>
         </div>
       </div>
       <div className="checklist-wall-window">

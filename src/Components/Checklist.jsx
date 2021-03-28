@@ -148,7 +148,7 @@ const Checklist = () => {
                 <div className="col-4">
                   <div className="d-flex justify-content-between">
                     <span style={{ textAlign: "center", color: "grey" }}>
-                      {gtxt.ignore}
+                      {gtxt.omit}
                     </span>
                     <span style={{ textAlign: "center", color: "green" }}>
                       {gtxt.yes}
@@ -166,7 +166,7 @@ const Checklist = () => {
                       <div className="col-8">
                         <p
                           style={
-                            item.status === "ignored"
+                            item.status === "omitted"
                               ? {
                                   color: "red",
                                   textDecoration: "line-through",
@@ -244,29 +244,6 @@ const Checklist = () => {
   );
 };
 
-const ChecklistButtonGroup = (props) => {
-  const { txt } = props.dictionary;
-  // Language
-  return (
-    <div
-      className="d-flex justify-content-between checklist-button-group"
-      onChange={(e) => {
-        console.log(e.target.value, "item: " + props.item.id);
-        props.updateItemStatus(props.item.id, e.target.value);
-      }}
-    >
-      <input type="radio" name={`option-${props.item.id}`} value="ignored" />
-      <input type="radio" name={`option-${props.item.id}`} value="checked" />
-      <input
-        type="radio"
-        name={`option-${props.item.id}`}
-        value="unchecked"
-        defaultChecked
-      />
-    </div>
-  );
-};
-
 const ChecklistHistoryViewer = (props) => {
   const [snapshots, setSnapshots] = useState([]);
   const { gtxt, txt } = props.dictionary;
@@ -306,7 +283,7 @@ const ChecklistHistoryViewer = (props) => {
                               <li key={item.id}>
                                 <span
                                   style={
-                                    item.status === "ignored"
+                                    item.status === ("omitted")
                                       ? {
                                           color: "white",
                                           textDecoration: "line-through",
@@ -319,7 +296,7 @@ const ChecklistHistoryViewer = (props) => {
                                 </span>
                                 <span
                                   style={
-                                    item.status === "ignored"
+                                    item.status === ("omitted")
                                       ? {
                                           color: "red",
                                           opacity: "0.4",

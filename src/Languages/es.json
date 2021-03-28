@@ -8,8 +8,8 @@
     },
     "Checklist": {
       "checked": "Chequeado",
-      "ignored": "Ignorado",
-      "explanation": "Selecciona Si o Ignorar en cada elemento de la lista",
+      "omitted": "Omitido",
+      "explanation": "Selecciona Si u Omitir en cada elemento de la lista",
       "listNotReadyMsg": " Todavía hay elementos sin chequear",
       "listReadyMsg": "Todo chequeado!",
       "saveToHistory": "Guardar instantánea en el historial",
@@ -26,7 +26,7 @@
       "noItemsYet": "La lista está vacía",
       "title": "Crea una nueva checklist"
     },
-
+    "ChecklistWall":{"title": "Aquí están tus checklists"},
     "LandingPage": {
       "createAccount": "Crear una cuenta",
       "login": "Acceder",
@@ -46,7 +46,7 @@
     "hello": "Hola",
     "history": "Historial",
     "home": "Inicio",
-    "ignore": "Ignorar",
+    "omit": "Omitir",
     "item": "Elemento",
     "login": "Acceder",
     "no": "No",

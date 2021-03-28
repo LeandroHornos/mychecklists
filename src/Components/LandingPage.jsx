@@ -25,12 +25,15 @@ const LandingPage = () => {
       <div className="row " style={styles.row}>
         <div className="col-md-3"></div>
         <div className="col-md-6" style={styles.centerColumn}>
-          <div className="d-flex flex-column justify-content-around align-items-center">
+          <div
+            className="d-flex flex-column justify-content-around align-items-center"
+            style={{ color: "rgb(200,200,200)" }}
+          >
             <h4>{txt.welcomeTo}</h4>
             <h2
               style={{ color: "white", fontSize: "3em", padding: "20px 0px" }}
             >
-              Checklist<span style={{ color: "red" }}>-</span>me
+              My<span style={{ color: "red" }}>-</span>Checklists
             </h2>
             <p style={{ color: "white" }}>{txt.slogan}</p>
 

@@ -9,7 +9,7 @@ const CheckButtons = (props) => {
         props.updateItemStatus(props.item.id, e.target.value);
       }}
     >
-      <input type="radio" name={`option-${props.item.id}`} value="ignored" />
+      <input type="radio" name={`option-${props.item.id}`} value="omitted" />
       <input type="radio" name={`option-${props.item.id}`} value="checked" />
       <input
         type="radio"

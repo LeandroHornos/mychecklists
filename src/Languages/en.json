@@ -8,8 +8,8 @@
     },
     "Checklist": {
       "checked": "Checked",
-      "ignored": "Ignored",
-      "explanation": "Click yes or ignore on every item on the list",
+      "omitted": "Omitted",
+      "explanation": "Click yes or omit on every item on the list",
       "listNotReadyMsg": " There are still some unchecked items on the list",
       "listReadyMsg": "All Checked!",
       "saveToHistory": "Save snapshot to history",
@@ -26,6 +26,7 @@
       "noItemsYet": "List is empty",
       "title": "Create a new checklist"
     },
+    "ChecklistWall":{"title": "Here are your checklists"},
     "Login": { "noAccount": "I don't have an account yet" },
     "NavigationBar": { "explore": "Explore", "new": "New" },
     "LandingPage": {
@@ -45,7 +46,7 @@
     "hello": "Hello",
     "history": "History",
     "home": "Home",
-    "ignore": "Ignore",
+    "omit": "Omit",
     "item": "Item",
     "login": "Log in",
     "no": "No",

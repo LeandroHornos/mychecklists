@@ -14,7 +14,7 @@ const NavigationBar = () => {
   return (
     <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
       <Navbar.Brand href="/">
-        Checklist<span style={{ color: "red" }}>-</span>me
+        My<span style={{ color: "red" }}>-</span>Checklists
       </Navbar.Brand>
       <Navbar.Toggle aria-controls="responsive-navbar-nav" />
       <Navbar.Collapse id="responsive-navbar-nav">
