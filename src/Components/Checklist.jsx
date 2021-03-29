@@ -83,6 +83,15 @@ const Checklist = () => {
     }
   };
 
+  const deleteChecklist = async () => {
+    try {
+      await ref.doc(id).delete();
+      history.push("/checklists");
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   // Effects
 
   useEffect(() => {
@@ -219,12 +228,21 @@ const Checklist = () => {
                   </Button>
                 </div>
               ) : (
-                <Button block variant="danger">
+                <Button block variant="outline-danger">
                   {gtxt.discard}
                 </Button>
               )}
             </div>
           </div>
+        </div>
+        <div className="col-lg-3 col-md-2"></div>
+      </div>
+      <div className="row" style={styles.row}>
+        <div className="col-lg-3 col-md-2"></div>
+        <div className="col-lg-6 col-md-8">
+          <Button block variant="danger" onClick={deleteChecklist}>
+            eliminar checklist
+          </Button>
         </div>
         <div className="col-lg-3 col-md-2"></div>
       </div>
@@ -283,7 +301,7 @@ const ChecklistHistoryViewer = (props) => {
                               <li key={item.id}>
                                 <span
                                   style={
-                                    item.status === ("omitted")
+                                    item.status === "omitted"
                                       ? {
                                           color: "white",
                                           textDecoration: "line-through",
@@ -296,7 +314,7 @@ const ChecklistHistoryViewer = (props) => {
                                 </span>
                                 <span
                                   style={
-                                    item.status === ("omitted")
+                                    item.status === "omitted"
                                       ? {
                                           color: "red",
                                           opacity: "0.4",
