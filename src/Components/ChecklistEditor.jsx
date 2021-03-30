@@ -66,6 +66,13 @@ const ChecklistEditor = () => {
     console.log(newItems);
   };
 
+  const removeItemFromChecklist = (itemId) => {
+    const filteredItems = items.filter((item) => {
+      return item.id !== itemId;
+    });
+    setItems(filteredItems);
+  };
+
   const clearChecklist = () => {
     setItems([]);
   };
@@ -144,7 +151,14 @@ const ChecklistEditor = () => {
                     <span style={{ padding: "10px" }}>{field.name}</span>
                     <span>
                       <Button variant="link">{gtxt.edit}</Button>
-                      <Button variant="link">{gtxt.delete}</Button>
+                      <Button
+                        variant="link"
+                        onClick={() => {
+                          removeItemFromChecklist(field.id);
+                        }}
+                      >
+                        {gtxt.delete}
+                      </Button>
                     </span>
                   </li>
                 );
