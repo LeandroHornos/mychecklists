@@ -1,5 +1,6 @@
 {
   "components": {
+    "About": {"author":"Autor", "copyright":"Copyright","title":"Acerca de","rightsReserved":"Todos los derechos reservados"},
     "Dashboard": {
       "hello": "Hola",
       "whatToDo": "Que te gustaría hacer?",
@@ -34,7 +35,7 @@
       "welcomeTo": "Te damos la bienvenida a"
     },
     "Login": { "noAccount": "Aún no tengo una cuenta" },
-    "NavigationBar": { "explore": "Explora", "new": "Nueva" }
+    "NavigationBar": { "about":"Acerca de","explore": "Explora", "new": "Nueva" }
   },
   "general": {
     "clear": "Limpiar",

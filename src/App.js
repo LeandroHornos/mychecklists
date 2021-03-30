@@ -8,6 +8,7 @@ import "./App.css";
 import { AuthContext } from "./Auth";
 
 // Components
+import About from "./Components/About";
 import Dashboard from "./Components/Dashboard";
 import Checklist from "./Components/Checklist";
 import ChecklistEditor from "./Components/ChecklistEditor";
@@ -49,6 +50,9 @@ function App() {
           </Route>
           <Route exact path="/exit">
             <SignOut />
+          </Route>
+          <Route exact path="/about">
+            <About />
           </Route>
         </Switch>
       </div>

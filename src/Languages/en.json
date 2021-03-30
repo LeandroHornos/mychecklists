@@ -1,5 +1,6 @@
 {
   "components": {
+    "About": {"author":"Author", "copyright":"Copyright", "title":"About", "rightsReserved":"All rights reserved"},
     "Dashboard": {
       "hello": "Hello",
       "whatToDo": "What would you like to do?",
@@ -28,7 +29,7 @@
     },
     "ChecklistWall":{"title": "Here are your checklists"},
     "Login": { "noAccount": "I don't have an account yet" },
-    "NavigationBar": { "explore": "Explore", "new": "New" },
+    "NavigationBar": {"about":"About", "explore": "Explore", "new": "New" },
     "LandingPage": {
       "createAccount": "Create a new account",
       "login": "Enter",

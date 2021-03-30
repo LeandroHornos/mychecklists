@@ -26,6 +26,7 @@ const NavigationBar = () => {
               {gtxt.home}
             </NavDropdown.Item>
             <NavDropdown.Item href="/edit">{txt.new}</NavDropdown.Item>
+            <NavDropdown.Item href="/about">{txt.about}</NavDropdown.Item>
             <NavDropdown.Divider />
             <NavDropdown.Item href="/exit">
               {gtxt.signOut}
