@@ -86,17 +86,20 @@ const ChecklistWall = (props) => {
                       </Link>
 
                       <ul style={{ listStyle: "none" }}>
-                        {checklist.items.map((item) => {
+                        {checklist.items.map((item, index) => {
+                          if (index > 9) return; //Limito vista previa a 10 elementos
+                          const op = 1 / (0.25 * (index + 0.01)); //Bajo la opacidad en funcion al index. 2 parámetros de ajuste (evito dividir por 0)
                           return (
                             <li
                               key={Utils.makeId(4)}
-                              style={{ fontSize: "1.3em" }}
+                              style={{ fontSize: "1.3em", opacity: `${op}` }}
                               className="handwritten"
                             >
                               {item.name}
                             </li>
                           );
                         })}
+                        {checklist.items.length > 10 && <li>...</li>}
                       </ul>
                     </div>
                   </div>
