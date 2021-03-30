@@ -13,7 +13,7 @@ const NavigationBar = () => {
   const gtxt = dictionary.general;
   return (
     <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
-      <Navbar.Brand href="/">
+      <Navbar.Brand href="/home">
         My<span style={{ color: "red" }}>-</span>Checklists
       </Navbar.Brand>
       <Navbar.Toggle aria-controls="responsive-navbar-nav" />
