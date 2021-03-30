@@ -14,6 +14,7 @@ import "../index.css";
 // React-bootstrap
 import Button from "react-bootstrap/Button";
 import InputGroup from "react-bootstrap/InputGroup";
+import Form from "react-bootstrap/Form";
 import FormControl from "react-bootstrap/FormControl";
 
 import Pin from "./Subcomponents/Pin";
@@ -71,6 +72,17 @@ const ChecklistEditor = () => {
       return item.id !== itemId;
     });
     setItems(filteredItems);
+  };
+
+  const updateItem = (itemId, newName) => {
+    const updatedItems = items.map((item) => {
+      if (item.id === itemId) {
+        return { ...item, name: newName };
+      } else {
+        return item;
+      }
+    });
+    setItems(updatedItems);
   };
 
   const clearChecklist = () => {
@@ -148,18 +160,12 @@ const ChecklistEditor = () => {
               {items.map((field) => {
                 return (
                   <li key={field.id} className="d-flex justify-content-between">
-                    <span style={{ padding: "10px" }}>{field.name}</span>
-                    <span>
-                      <Button variant="link">{gtxt.edit}</Button>
-                      <Button
-                        variant="link"
-                        onClick={() => {
-                          removeItemFromChecklist(field.id);
-                        }}
-                      >
-                        {gtxt.delete}
-                      </Button>
-                    </span>
+                    <ChecklistItemEditor
+                      item={field}
+                      dictionary={{ txt, gtxt }}
+                      removeItemFromChecklist={removeItemFromChecklist}
+                      updateItem={updateItem}
+                    />
                   </li>
                 );
               })}
@@ -198,6 +204,76 @@ const ChecklistEditor = () => {
         </div>
       </div>
     </React.Fragment>
+  );
+};
+
+const ChecklistItemEditor = (props) => {
+  const [mode, setMode] = useState("read");
+  const [name, setName] = useState(props.item.name);
+  const { gtxt } = props.dictionary;
+  return (
+    <div className="row" style={{ ...styles.row, width: "100%" }}>
+      <div className="col-6">
+        {mode === "read" ? (
+          <p style={{ textAlign: "left", padding:"8px 0px" }}>{props.item.name}</p>
+        ) : (
+          <Form.Control
+            as="textarea"
+            value={name}
+            onChange={(e) => {
+              setName(e.target.value);
+            }}
+          ></Form.Control>
+        )}
+      </div>
+      <div className="col-3">
+        {mode === "read" ? (
+          <Button
+            style={{ color: "rgb(50,150,60)" }}
+            variant="link"
+            onClick={() => {
+              setMode("edit");
+            }}
+          >
+            {gtxt.edit}
+          </Button>
+        ) : (
+          <Button
+            style={{ color: "rgb(50,150,60)" }}
+            variant="link"
+            onClick={() => {
+              props.updateItem(props.item.id, name);
+              setMode("read");
+            }}
+          >
+            Aceptar
+          </Button>
+        )}
+      </div>
+      <div className="col-3">
+        {mode === "read" ? (
+          <Button
+            style={{ color: "red" }}
+            variant="link"
+            onClick={() => {
+              props.removeItemFromChecklist(props.item.id);
+            }}
+          >
+            {gtxt.delete}
+          </Button>
+        ) : (
+          <Button
+            style={{ color: "red" }}
+            variant="link"
+            onClick={() => {
+              setMode("read");
+            }}
+          >
+            Cancelar
+          </Button>
+        )}
+      </div>
+    </div>
   );
 };
 
